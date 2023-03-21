@@ -6,6 +6,7 @@ export const login = {
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
+        <h2 class="mb-3">Registro</h2>
   <form id="form-id">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email:</label>

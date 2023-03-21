@@ -21,10 +21,10 @@ document.querySelector('main').innerHTML = home.template
 //libros.script()
 //document.querySelector('main').innerHTML = salas.template
 //salas.script()
-document.querySelector('main').innerHTML = login.template
-login.script()
-//document.querySelector('main').innerHTML = registro.template
-//registro.script()
+//document.querySelector('main').innerHTML = login.template
+//login.script()
+document.querySelector('main').innerHTML = registro.template
+registro.script()
 //document.querySelector('main').innerHTML = adminLibros.template
 //adminLibros.script()
 document.querySelector('footer').innerHTML = footer.template

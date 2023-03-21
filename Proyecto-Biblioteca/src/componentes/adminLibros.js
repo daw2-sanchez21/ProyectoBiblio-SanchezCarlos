@@ -49,10 +49,21 @@ export const adminLibros = {
           const btnEliminar = libroItem.querySelector(`#eliminar-${libro.id}`)
           btnEliminar.addEventListener('click', async(d)=>{
           console.log("Boton eliminar")
+          //Guardamos el id en una variable
+          const libroSeleccionado = d.target.id
+          //Quitamos el texto y nos quedamos solo con el numero
+          const libroId = libroSeleccionado.replace("eliminar-", "");
+          console.log(`El id es: ${libroSeleccionado}`)    
+          const { data, error } = await supabase
+          .from('libros')
+          .delete()
+          .match({ id: `${libroId}` })
 
+          console.log("Eliminado correctamente")
+          console.log(error)
           })
           //Boton Editar
-         const btnEditar = libroItem.querySelector(`#editar-${libro.id}`)
+          const btnEditar = libroItem.querySelector(`#editar-${libro.id}`)
           btnEditar.addEventListener('click', async(l)=>{
           console.log("Boton editar")
 

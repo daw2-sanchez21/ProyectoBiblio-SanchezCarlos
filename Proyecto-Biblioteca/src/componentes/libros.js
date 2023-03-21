@@ -30,6 +30,7 @@ export const libros = {
           return;
         }
 
+
         libros.forEach((libro) => {
           const libroItem = document.createElement('div');
           libroItem.classList.add('card', 'col-3', 'p-3', 'm-3');
@@ -39,9 +40,37 @@ export const libros = {
             <div class="card-body">
               <h5 class="card-title">${libro.titulo}</h5>
               <p class="card-text">${libro.autor}</p>
-              <a href="#" class="btn btn-primary">Reserva</a>
+              <a href="#" class="btn btn-primary" id="reserva-${libro.id}">Reserva</a>
             </div>
-          `;
+          `; 
+          const libroReserva = libroItem.querySelector(`#reserva-${libro.id}`)
+          libroReserva.addEventListener('click', async(e)=>{
+            console.log("Boton reservar")
+            const libroReservaId = e.target.id
+            const libroId = libroReservaId.replace("reserva-", "");
+            let { data, error } = await supabase
+            .from('reserva_libros')
+            .select('estado')
+            .eq('id', `${libroId}`)
+
+            if(data[0].estado=="reservado"){
+              //Mejorar alert para cuando el libro no esté disponible
+              alert("El libro ya está reservado");
+            }else{
+              console.log("Disponible")
+              //Tendremos que optener el usuario
+              //const { data: { user } } = await supabase.auth.getUser()
+
+              //const { data, error } = await supabase
+              //.from('reserva_libros')
+              //.update({ somevalue: 'otherValue' })
+              //.eq('some_column', 'someValue')
+
+            }
+ 
+
+           })
+           
           librosList.appendChild(libroItem);
         });
 
@@ -76,16 +105,17 @@ export const libros = {
                 <div class="card-body">
                   <h5 class="card-title">${libro.titulo}</h5>
                   <p class="card-text">${libro.autor}</p>
-                  <a href="#" class="btn btn-primary">Reserva</a>
+                  <a href="#" class="btn btn-primary" id="reserva-${libro.id}">Reserva</a>
                 </div>    
               `;
           
-              librosList.appendChild(nuevoLibro);
+              librosList.appendChild(nuevoLibro)
             });
             }
 
           })
 
+          
 
 
   },
