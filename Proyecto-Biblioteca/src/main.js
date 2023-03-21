@@ -10,12 +10,21 @@ import { footer } from './componentes/footer'
 import { home } from './vistas/home'
 import { libros } from './componentes/libros';
 import { salas } from './componentes/salas';
+import { login } from './componentes/login';
+import { registro } from './componentes/registro';
+import { adminLibros } from './componentes/adminLibros';
 
 
 document.querySelector('header').innerHTML = header.template
 document.querySelector('main').innerHTML = home.template
-document.querySelector('main').innerHTML = libros.template
-libros.script()
+//document.querySelector('main').innerHTML = libros.template
+//libros.script()
 //document.querySelector('main').innerHTML = salas.template
 //salas.script()
+//document.querySelector('main').innerHTML = login.template
+//login.script()
+//document.querySelector('main').innerHTML = registro.template
+//registro.script()
+document.querySelector('main').innerHTML = adminLibros.template
+adminLibros.script()
 document.querySelector('footer').innerHTML = footer.template
