@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-export const libros = {
+export default {
   template: `
     <h1>Lista de Libros</h1>
     <div class="container">

@@ -1,7 +1,7 @@
 import { computeStyles } from '@popperjs/core';
 import { createClient } from '@supabase/supabase-js';
 
-export const adminLibros = {
+export default {
   template: `
     <h1 id="prueba-btn">Lista de Libros</h1>
 

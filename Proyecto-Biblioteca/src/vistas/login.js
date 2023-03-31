@@ -1,12 +1,12 @@
 import { createClient } from '@supabase/supabase-js'
 
-export const login = {
+export default  {
   template: `<div class="container h-100" style="background-color:#3BC3FF">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-        <h2 class="mb-3">Registro</h2>
+        <h2 class="mb-3">Login</h2>
   <form id="form-id">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email:</label>
