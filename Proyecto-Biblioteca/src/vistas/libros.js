@@ -18,6 +18,10 @@ export default {
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqZm9hZmZ4eWlqbnJ2c2dnZGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzcwMDMzMDMsImV4cCI6MTk5MjU3OTMwM30.ZFxjegJ8rzQQKrKu091gEC5LuvnH2fBlMKg40Nkd6EA';
     const supabase = createClient(supabaseUrl, supabaseKey);
 
+    const main= document.querySelector('main')
+    main.style.backgroundColor='#FFFFFF'
+    main.style.height='auto'
+
     const librosList = document.createElement('div');
     librosList.classList.add('row');
 
