@@ -1,7 +1,7 @@
 export const header = {
   template: `<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <a class="navbar-brand biblio" href="#"><span class="text-dark">Biblioteca</span><span style="color:#77B7E1;">Llefià</span></a>
+    <a class="navbar-brand biblio" href="#"><span class="text-dark" style="font-size:24px">Biblioteca</span><span style="color:#77B7E1; font-size:24px;">Llefià</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,22 +9,22 @@ export const header = {
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link" href="home.html">Inici</a>
+          <a class="nav-link" href="home.html"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inici<span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/libros">Llibres</a>
+          <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Llibres<span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/salas">Salas</a>
+          <a class="nav-link" href="#/salas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Sales<span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/login">Login</a>
+          <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reserves<span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/registro">Registro</a>
+          <a class="nav-link" href="#/login"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Login<span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/reservas">Reserves</a>
+          <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registre<span></a>
         </li>
 
       </ul>

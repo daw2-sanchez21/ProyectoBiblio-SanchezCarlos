@@ -7,18 +7,18 @@ export default  {
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-        <h2 class="mb-3">Login</h2>
+        <h2 class="mb-3" style="font-family: 'Open Sans', sans-serif;">Login</h2>
   <form id="form-id">
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email:</label>
+      <label for="exampleInputEmail1" class="form-label"><span style="font-family: 'Open Sans', sans-serif;">Email:</span></label>
       <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp">
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password:</label>
+      <label for="exampleInputPassword1" class="form-label"><span style="font-family: 'Open Sans', sans-serif;">Contrasenya:</span></label>
       <input type="password" class="form-control" id="password-id">
     </div>
     
-    <button type="submit" class="btn" style="border-color:#77B7E1;">Entrar</button>
+    <button type="submit" class="btn" style="border-color:#77B7E1; font-family: 'Open Sans', sans-serif;">Entrar</button>
   </form></div>
   </div></div></div></div>`,
   async script() {

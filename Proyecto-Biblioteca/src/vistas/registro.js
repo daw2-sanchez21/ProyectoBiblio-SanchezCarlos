@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 import { User } from './user'
 import { Usuarios } from './usuarios'
 export default {
-  template: `<div class="container h-100" style="background-color:#3BC3FF">
+  template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-md-4">
       <div class="card">
@@ -35,7 +35,7 @@ export default {
   async script() {
     console.log("connectio done");
     const main= document.querySelector('main')
-    main.style.backgroundColor='#3BC3FF'
+    main.style.backgroundColor='#77B7E1'
     main.style.height='1000px'
     
     const formUser = document.querySelector('#form-id')
