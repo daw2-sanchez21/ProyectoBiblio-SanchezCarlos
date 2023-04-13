@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
-
+import { User } from './user'
+import { Usuarios } from './usuarios'
 export default {
   template: `<div class="container h-100" style="background-color:#3BC3FF">
   <div class="row justify-content-center align-items-center h-100">
@@ -20,10 +21,6 @@ export default {
       <input type="text" class="form-control" id="nick-id" aria-describedby="emailHelp">
     </div>
     <div class="mb-3"
-      <label for="exampleInputEmail1" class="form-label">Edad:</label>
-      <input type="numeric" class="form-control" id="edad-id" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3"
       <label for="exampleInputEmail1" class="form-label">Email:</label>
       <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp">
     </div>
@@ -36,12 +33,7 @@ export default {
   </form></div></div></div></div></div>`,
 
   async script() {
-    // Creando la conexión con Supabase
-    const supabaseUrl = 'https://yjfoaffxyijnrvsggdgr.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqZm9hZmZ4eWlqbnJ2c2dnZGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzcwMDMzMDMsImV4cCI6MTk5MjU3OTMwM30.ZFxjegJ8rzQQKrKu091gEC5LuvnH2fBlMKg40Nkd6EA';
-    const supabase = createClient(supabaseUrl, supabaseKey);
     console.log("connectio done");
-
     const main= document.querySelector('main')
     main.style.backgroundColor='#3BC3FF'
     main.style.height='1000px'
@@ -49,31 +41,39 @@ export default {
     const formUser = document.querySelector('#form-id')
     formUser.addEventListener('submit', async (e) => {
       e.preventDefault()
-      const emailID = document.getElementById('email-id')
-      const pswID = document.getElementById('password-id')
-      const nombreID = document.getElementById('nombre-id')
-      const apellidoID = document.getElementById('apellido-id')
-      const nickID = document.getElementById('nick-id')
-      const edadID = document.getElementById('edad-id')
-    
-    
-      console.log(emailID.value)
-      console.log(pswID.value)
-
-    const { data, error } = await supabase.auth.signUp({
-    email: `${emailID.value}`,
-    password: `${pswID.value}`
+      const rol="default"
+      try {
+        // Objeto con datos para el registro de user
+        const usuario = {
+          email: document.querySelector('#email-id').value,
+          password: document.querySelector('#password-id').value
+        }
+        const nuevoUser = await User.create(usuario)
+      }catch(error){ console.log(error)
+        alert('Error al crear usuario')}
+        try{ const perfilData = {
+          nombre: document.querySelector('#nombre-id').value,
+          apellido: document.querySelector('#apellido-id').value,
+          nick: document.querySelector('#nick-id').value,
+          email: document.querySelector('#email-id').value,
+          password: document.querySelector('#password-id').value,
+          rol: rol
+        }
+        await Usuarios.create(perfilData)
+        alert('Usuario creado con éxito')
+        // Cargamos la página login
+        window.location.href = '/#/login'
+      }catch(error){ 
+        console.log(error)
+        alert('Error al crear usuario')
+      }
+      try{
+        const user= document.querySelector('#email-id').value
+        const id= await Usuarios.getId(user)
+        console.log(id)
+      }catch(error){ 
+        console.log(error)
+        alert('Error al obtener ID')}
     })
-    if (error) {
-    console.log(error)
-  } else { 
-    const { da, error } = await supabase
-    .from('usuarios')
-    .insert([{ nombre: `${nombreID.value}`, apellido: `${apellidoID.value}` ,nick: `${nickID.value}`, email: `${emailID.value}`, password: `${pswID.value}`, rol: 'default', edad: `${edadID.value}` }
-
-  ])    
-   if(error){console.log(error)}else{console.log(da)}}
-})
+  }
 }
-}
-

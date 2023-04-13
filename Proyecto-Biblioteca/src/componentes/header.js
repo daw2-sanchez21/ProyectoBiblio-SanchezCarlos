@@ -1,7 +1,7 @@
 export const header = {
   template: `<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#"><span class="text-dark">Biblioteca</span><span class="text-primary">Llefià</span></a>
+    <a class="navbar-brand biblio" href="#"><span class="text-dark">Biblioteca</span><span style="color:#77B7E1;">Llefià</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,7 +21,10 @@ export const header = {
           <a class="nav-link" href="#/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#reservas.html">Reserves</a>
+          <a class="nav-link" href="#/registro">Registro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/reservas">Reserves</a>
         </li>
 
       </ul>
