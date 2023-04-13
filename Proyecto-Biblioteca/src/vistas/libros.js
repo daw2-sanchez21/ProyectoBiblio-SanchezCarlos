@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { Libros } from './claseLibros.js'
+import { supabase } from './supabase'
 export default {
   template: `
     <h1>Lista de Libros</h1>

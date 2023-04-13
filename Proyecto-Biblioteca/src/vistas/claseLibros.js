@@ -29,5 +29,18 @@ static async getAll() {
         return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen )
     })
   }
+  //static async getSearch(texto) {
+    //const { data: libros, error } = await supabase
+         // .from('libros')
+          //.select('*')
+          //.ilike('titulo', `%${texto}%`)
+    //if (error) {
+     // throw new Error(error.message)
+    //}
+    // devuelve array de objetos
+   // return libros.map(({ id, created_at, titulo, autor, isbn, fecha_publicacion, imagen }) => {
+     //   return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen )
+    //})
+  //}
 
 }
