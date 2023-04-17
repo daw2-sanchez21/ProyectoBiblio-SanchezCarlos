@@ -18,12 +18,12 @@ export default {
     main.style.backgroundColor='#FFFFFF'
     main.style.height='auto'
 
-    const librosList = document.createElement('div');
-    librosList.classList.add('row');
+    const librosList = document.createElement('div')
+    librosList.classList.add('row')
 
         const libros = await Libros.getAll()
         libros.forEach((libro) => {
-          const libroItem = document.createElement('div');
+          const libroItem = document.createElement('div')
           libroItem.classList.add('card', 'col-3', 'p-3', 'm-3');
           libroItem.style.width = '18rem';
           libroItem.innerHTML = `
@@ -39,19 +39,9 @@ export default {
             console.log("Boton reservar")
             const libroReservaId = e.target.id
             const libroId = libroReservaId.replace("reserva-", "");
-            let { data, error } = await supabase //Proxima clase
-            .from('reserva_libros')
-            .select('estado')
-            .eq('id', `${libroId}`)
-
-            if(data[0].estado=="reservado"){
-              //Mejorar alert para cuando el libro no esté disponible
-              alert("El libro ya está reservado");
-            }else{
-              console.log("Disponible")
-            }
+            await Libros.estado(libroId)
            })
-          librosList.appendChild(libroItem);
+          librosList.appendChild(libroItem)
         })
 
         // Agregamos la lista de libros al elemento HTML con el ID "libros-list"
@@ -63,36 +53,27 @@ export default {
           formsearch.addEventListener('submit', async(e)=>{
             e.preventDefault();
             const texto =e.target.search.value
-            const { data: libros, error } = await supabase
-            .from('libros')
-            .select('*')
-            .ilike('titulo', `%${texto}%`)
-          
-          if (error) {
-            console.log(error)
-          } else {
-            console.log(libros)
-          
+            const librosSearch = await Libros.getSearch(texto)
             librosList.innerHTML = "";
           
-            libros.forEach((libro) => {
+            librosSearch.forEach((libro2) => {
               const nuevoLibro = document.createElement('div');
               nuevoLibro.classList.add('card', 'col-3', 'p-3', 'm-3');
-              nuevoLibro.style.width = '18rem';
+              nuevoLibro.style.width = '18rem'
               
               nuevoLibro.innerHTML = `
-                <img src="${libro.imagen}" class="card-img-top" alt="${libro.titulo} style="width: 200px; height: 220px;">
+                <img src="${libro2.imagen}" class="card-img-top" alt="${libro2.titulo} style="width: 200px; height: 220px;">
                 <div class="card-body">
-                  <h5 class="card-title">${libro.titulo}</h5>
-                  <p class="card-text">${libro.autor}</p>
-                  <a href="#" class="btn" style="background-color:#00AF87;" id="reserva-${libro.id}">Reserva</a>
+                  <h5 class="card-title">${libro2.titulo}</h5>
+                  <p class="card-text">${libro2.autor}</p>
+                  <a href="#" class="btn" style="background-color:#00AF87;" id="reserva-${libro2.id}">Reserva</a>
                 </div>    
-              `;
+              `
           
               librosList.appendChild(nuevoLibro)
-            });
-            }
+            })
+            
 
           })
-  },
-};
+  }
+}

@@ -6,7 +6,8 @@ import { supabase } from './supabase'
 console.log('Conecciton done')
 export class Usuarios {
   // Mapping de propiedades de la tabla perfiles
-  constructor (nombre=null, apellido=null, nick=null, email = null, password = null, rol=null) {
+  constructor (id= null, nombre=null, apellido=null, nick=null, email = null, password = null, rol=null) {
+    this.id = id;
     this.nombre = nombre
     this.apellido = apellido
     this.nick = nick
@@ -35,5 +36,16 @@ export class Usuarios {
       throw new Error(error.message)
     }
     return usuarios
+  }
+  static async getByUserId(id) {
+    const { data: usuario , error } = await supabase
+      .from('usuarios')
+      .select('*')
+      .eq('id', id)
+      .single()
+    if (error) {
+      throw new Error(error.message)
+    }
+    return new Usuarios (usuario.id, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.rol )
   }
 }

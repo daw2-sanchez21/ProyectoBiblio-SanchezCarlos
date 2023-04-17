@@ -6,7 +6,8 @@ import { supabase } from './supabase'
 console.log('Conecciton done')
 export class User {
   // Mapping de propiedades de la tabla perfiles
-  constructor (email = null, password = null) {
+  constructor (id=null, email = null, password = null) {
+    this.id = id
     this.email = email
     this.password = password
   }
@@ -17,7 +18,7 @@ export class User {
       if (error) {
         throw new Error(error.message)
       }
-      return new User(data.user.email, data.user.password)
+      return new User(data.user.id, data.user.email)
     }
     static async create (userData) {
         const { data, error } = await supabase.auth.signUp(userData)
@@ -26,7 +27,29 @@ export class User {
           throw new Error(error.message)
         }
         console.log('usuario creado correctamente ', data)
-        return new User(data.user.email, data.user.password)
+        return new User(data.user.id,data.user.email)
     }
-  
+    static async logout(){
+      // USER LOGOUT
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      throw new Error(error.message)
+    }
+    return true
+    }
+  // leer user logeado
+  static async getUser () {
+    try {
+      // GET USER
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        return new User(user.id, user.email);
+      } else {
+        return null; // o lanzar una excepción, dependiendo de lo que necesites
+      }
+    } catch (error) {
+      console.error(error);
+      // manejar el error de alguna manera, por ejemplo lanzando una excepción
+    }
+  }
 }
