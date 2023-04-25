@@ -48,4 +48,16 @@ export class Usuarios {
     }
     return new Usuarios (usuario.id, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.rol )
   }
+
+  static async getByUserRol(email) {
+    const { data: usuario , error } = await supabase
+      .from('usuarios')
+      .select('rol')
+      .eq('email', email)
+      .single()
+    if (error) {
+      throw new Error(error.message)
+    }
+    return new Usuarios (usuario.id, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.rol )
+  }
 }

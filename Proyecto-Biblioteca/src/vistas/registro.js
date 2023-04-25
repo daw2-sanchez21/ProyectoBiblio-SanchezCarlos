@@ -8,28 +8,34 @@ export default {
       <div class="card">
         <div class="card-body"><form id="form-id">
         <h2 class="mb-3">Registro</h2>
-    <div class="mb-3"
+    <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Nombre:</label>
-      <input type="text" class="form-control" id="nombre-id" aria-describedby="emailHelp">
+      <input type="text" class="form-control" id="nombre-id" aria-describedby="emailHelp" pattern="[A-Za-z]{2,}>
+      
     </div>
-    <div class="mb-3"
+    <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Apellido:</label>
-      <input type="text" class="form-control" id="apellido-id" aria-describedby="emailHelp">
+      <input type="text" class="form-control" id="apellido-id" aria-describedby="emailHelp" pattern="[A-Za-z]{2,}">
+      <div class="invalid-feedback">El apellido no es correcto</div>
     </div>
-    <div class="mb-3"
+    <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Nick:</label>
       <input type="text" class="form-control" id="nick-id" aria-describedby="emailHelp">
     </div>
-    <div class="mb-3"
+    <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Email:</label>
-      <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp">
+      <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp" pattern="[a-zA-Z0-9.@]" required />
+      <div class="invalid-feedback">El Email no es correcto</div>
     </div>
-    <div class="mb-3">
+    <div class="m-3">
       <label for="exampleInputPassword1" class="form-label">Password:</label>
-      <input type="password" class="form-control" id="password-id">
+      <input type="password" class="form-control" id="password-id"  pattern="[A-Za-z0-9]{8,}">
+      <div class="invalid-feedback">
+                La contraseña debe contener 8 letras o números.
+            </div>
     </div>
     
-    <button type="submit" class="btn btn-primary">Sign Up</button>
+    <button type="submit" class="btn btn-primary m-3">Sign Up</button>
   </form></div></div></div></div></div>`,
 
   async script() {

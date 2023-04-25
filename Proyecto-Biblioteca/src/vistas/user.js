@@ -39,17 +39,18 @@ export class User {
     }
   // leer user logeado
   static async getUser () {
+    const anm = "anm"
     try {
       // GET USER
-      const { data: { user } } = await supabase.auth.getUser();
+      const { data: { user } } = await supabase.auth.getUser()
       if (user) {
-        return new User(user.id, user.email);
+        return new User(user.id, user.email)
       } else {
-        return null; // o lanzar una excepción, dependiendo de lo que necesites
+        return false
       }
     } catch (error) {
       console.error(error);
-      // manejar el error de alguna manera, por ejemplo lanzando una excepción
     }
   }
+  
 }

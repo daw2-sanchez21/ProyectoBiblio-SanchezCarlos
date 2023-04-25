@@ -1,4 +1,5 @@
 import { User } from '../vistas/user'
+import { Usuarios } from '../vistas/usuarios'
 export const header = {
   template: `<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
@@ -16,12 +17,13 @@ export const header = {
   async script (){
     console.log('header')
     const nav = document.querySelector("#hd")
-    var estado = null
-    const estadoDefault = "anonimo"
-    if(estado!=null){
+    //Hacer lógica más eficiente y probar en incognito pq guarda los usuarios
+    const estado = await User.getUser()
+    console.log(estado)
+    if(estado){
       nav.innerHTML=`
             <li class="nav-item">
-              <a class="nav-link" href="home.html"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inici<span></a>
+              <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inici<span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Llibres<span></a>
@@ -31,12 +33,6 @@ export const header = {
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reserves<span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#/login"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Login<span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registre<span></a>
             </li>`
     }else{
       nav.innerHTML=``
@@ -49,6 +45,9 @@ export const header = {
             </li>
          `
     }
-    estado = await User.getUser()
-  }
+    //header.script()
+    console.log("Esto es el mail: ", estado.email)
+    const rol = await Usuarios.getByUserRol(estado.email)
+    console.log("Esto es el rol ", rol.rol)
+}
 }

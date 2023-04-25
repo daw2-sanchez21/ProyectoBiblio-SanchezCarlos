@@ -2,7 +2,7 @@
 import { createClient } from '@supabase/supabase-js'
 // import { supabase } from './supabase'
 import { supabase } from './supabase'
-
+import { ReservaLibros } from './claseReservaLibros';
 console.log('Conecciton done')
 export class Libros {
   // Mapping de propiedades de la tabla perfiles
@@ -42,17 +42,23 @@ static async getAll() {
         return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen )
     })
   }
+  //Mejorar query para obtener el estado hacer join
   static async estado(libroId){
     const { data, error } = await supabase 
           .from('reserva_libros')
           .select('estado')
           .eq('id', `${libroId}`)
-          if(data[0].estado=="reservado"){
+          if(data && data.length > 0 && data[0].estado=="reservado"){
             //Mejorar alert para cuando el libro no esté disponible
-            alert("El libro ya está reservado")
+            swal({title:'No disponible', icon:'warning'})
+          
           }else{
-            console.log("Disponible")
+            swal({title:'Confirmado', icon:'success'})
+            await ReservaLibros.reservar(libroId, 1)
+            
           }
-         }
   }
+  
+}
+
 

@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { Libros } from './claseLibros.js'
 import { supabase } from './supabase'
+import { ReservaLibros } from './claseReservaLibros';
 export default {
   template: `
     <h1>Lista de Libros</h1>
@@ -24,22 +25,39 @@ export default {
         const libros = await Libros.getAll()
         libros.forEach((libro) => {
           const libroItem = document.createElement('div')
-          libroItem.classList.add('card', 'col-3', 'p-3', 'm-3');
-          libroItem.style.width = '18rem';
+          libroItem.classList.add('card', 'col-3', 'p-3', 'm-3')
+          libroItem.style.width = '18rem'
           libroItem.innerHTML = `
             <img src="${libro.imagen}" class="card-img-top" alt="${libro.titulo} style="width: 200px; height: 220px;">
             <div class="card-body">
               <h5 class="card-title">${libro.titulo}</h5>
               <p class="card-text">${libro.autor}</p>
               <a href="#" class="btn" style="background-color:#00AF87; color:white" id="reserva-${libro.id}">Reserva</a>
-            </div>
-          `; 
+            </div>`
+
           const libroReserva = libroItem.querySelector(`#reserva-${libro.id}`)
           libroReserva.addEventListener('click', async(e)=>{
             console.log("Boton reservar")
             const libroReservaId = e.target.id
-            const libroId = libroReservaId.replace("reserva-", "");
-            await Libros.estado(libroId)
+            const libroId = libroReservaId.replace("reserva-", "")
+            //Conflicto pq si no tiene estado da error
+            //const confirmacion = window.confirm("¿Estás seguro de que quieres reservar este libro?");
+            swal("Desea reservar el libro?",{
+                buttons:["Cancelar", "Confirmar"]
+            })
+            .then(async(value) => {
+              if (value) {
+                //swal({title:'Confirmado', icon:'success'})
+                await Libros.estado(libroId)
+              } else {
+                swal({title:'Cancelado', icon:'warning'})
+                //console.log("Has hecho clic en el botón Cancelar");
+              }
+            })
+            //if (confirmacion) {
+            //await Libros.estado(libroId)
+            //}
+            
            })
           librosList.appendChild(libroItem)
         })
@@ -54,7 +72,7 @@ export default {
             e.preventDefault();
             const texto =e.target.search.value
             const librosSearch = await Libros.getSearch(texto)
-            librosList.innerHTML = "";
+            librosList.innerHTML = ""
           
             librosSearch.forEach((libro2) => {
               const nuevoLibro = document.createElement('div');
