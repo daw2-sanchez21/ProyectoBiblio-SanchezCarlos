@@ -62,7 +62,7 @@ static async reservar(libro, usuario) {
     if(error){
       swal({title:'Error',text:'Ya tienes una reserva en curso', icon:'warning'})
     }else{
-      swal({title:'Reservado',text:`Has reservado el libro ${libro}`, icon:'warning'})
+      swal({title:'Reservado',text:`Has reservado el libro ${libro}`, icon:'success'})
       //alert(`RESERVADO! Libro: ${libro} User: ${usuario}`)
     }
   

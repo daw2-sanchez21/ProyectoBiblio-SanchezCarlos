@@ -58,6 +58,55 @@ static async getAll() {
             
           }
   }
+
+  static async eliminar(libroId){
+    const { data, error } = await supabase 
+          .from('libros')
+          .delete()
+          .match({ id: `${libroId}` })
+    if(error){
+      swal({title:'No se ha podido eliminar',text:`${error}`, icon:'warning'})
+    }else{
+      swal({title:'Eliminado Correctamente', icon:'success'})
+    }
+  }
+  static async addLibro(dataLibro){
+    const { data, error } = await supabase
+    .from('libros')
+    .insert({
+      titulo: dataLibro.titulo,
+      autor: dataLibro.autor,
+      isbn: dataLibro.isbn,
+      fecha_publicacion: dataLibro.fecha,
+      imagen: dataLibro.imagen
+    })
+    if(error){
+      swal({title:'No se ha podido añadir el libro',text:`${error}`, icon:'warning'})
+    }else{
+      swal({title:'Añadir Correctamente', icon:'success'})
+    }
+  }
+  static async updateLibro(dataLibro) {
+    const { data, error } = await supabase
+      .from('libros')
+      .update({
+        titulo: `${dataLibro.titulo}`,
+        autor: `${dataLibro.autor}`,
+        isbn: `${dataLibro.isbn}`,
+        fecha_publicacion: `${dataLibro.fecha}`,
+        imagen: `${dataLibro.imagen}`
+      })
+      .match({ id: `${dataLibro.id}` })
+  
+    if (error) {
+      swal({ title: 'No se ha podido actualizar el libro', text: `${error}`, icon: 'warning' })
+    } else {
+      swal({ title: 'Actualizado', icon: 'success' })
+    }
+  }
+  
+
+  
   
 }
 

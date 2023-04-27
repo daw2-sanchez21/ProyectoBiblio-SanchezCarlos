@@ -13,7 +13,7 @@ export const header = {
       </ul>
     </div>
   </div>
-</nav>`,
+</nav><div id="guardar-id"></div>`,
   async script (){
     console.log('header')
     const nav = document.querySelector("#hd")
@@ -33,7 +33,12 @@ export const header = {
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reserves<span></a>
-            </li>`
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#/admin"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin<span></a>
+            </li>
+            
+            `
     }else{
       nav.innerHTML=``
       nav.innerHTML=`

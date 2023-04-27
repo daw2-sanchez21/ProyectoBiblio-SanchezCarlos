@@ -1,122 +1,109 @@
-import { computeStyles } from '@popperjs/core';
-import { createClient } from '@supabase/supabase-js';
-
+import { createClient } from '@supabase/supabase-js'
+import { Libros } from './claseLibros.js'
+import { supabase } from './supabase'
+import { ReservaLibros } from './claseReservaLibros';
 export default {
   template: `
-    <h1 id="prueba-btn">Lista de Libros</h1>
-
+    <h1>Lista de Usuarios</h1>
     <div class="container">
       <form id="search-id" class="d-flex p-5">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn" style="border-color:#77B7E1;" type="submit">Search</button>
       </form>
     </div>
-    <div class="container" id="libros-list"></div>
+    <div class="container" id="libro-list"></div>
   `,
   async script() {
-    console.log('pruebas supabase');
-    // Creando la conexión con Supabase
-    const supabaseUrl = 'https://yjfoaffxyijnrvsggdgr.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqZm9hZmZ4eWlqbnJ2c2dnZGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzcwMDMzMDMsImV4cCI6MTk5MjU3OTMwM30.ZFxjegJ8rzQQKrKu091gEC5LuvnH2fBlMKg40Nkd6EA';
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    
+    const main= document.querySelector('main')
+    main.style.backgroundColor='#FFFFFF'
+    main.style.height='auto'
 
-    const librosList = document.createElement('div');
-    librosList.classList.add('row');
+    const librosList = document.createElement('div')
+    librosList.classList.add('row')
 
-    supabase
-      .from('libros')
-      .select('id, titulo, autor, imagen')
-      .then(({ data: libros, error }) => {
-        if (error) {
-          console.error(error);
-          return;
-        }
-
+        const libros = await Libros.getAll()
         libros.forEach((libro) => {
-          const libroItem = document.createElement('div');
-          libroItem.classList.add('card', 'col-3', 'p-3', 'm-3');
-          libroItem.style.width = '18rem';
+          const libroItem = document.createElement('div')
+          libroItem.classList.add('card', 'col-3', 'p-3', 'm-3')
+          libroItem.style.width = '18rem'
           libroItem.innerHTML = `
             <img src="${libro.imagen}" class="card-img-top" alt="${libro.titulo} style="width: 200px; height: 220px;">
             <div class="card-body">
               <h5 class="card-title">${libro.titulo}</h5>
               <p class="card-text">${libro.autor}</p>
-              <button class="btn btn-outline-warning eliminar1" type="edit" id="editar-${libro.id}">Editar</button>
-              <button class="btn btn-outline-danger" type="delete" id="eliminar-${libro.id}">Eliminar</button>
-            </div>
-          `;
-          //Boton Eliminar
-          const btnEliminar = libroItem.querySelector(`#eliminar-${libro.id}`)
-          btnEliminar.addEventListener('click', async(d)=>{
-          console.log("Boton eliminar")
-          //Guardamos el id en una variable
-          const libroSeleccionado = d.target.id
-          //Quitamos el texto y nos quedamos solo con el numero
-          const libroId = libroSeleccionado.replace("eliminar-", "");
-          console.log(`El id es: ${libroSeleccionado}`)    
-          const { data, error } = await supabase
-          .from('libros')
-          .delete()
-          .match({ id: `${libroId}` })
+              <a href="#" class="btn btn-danger" color:white" id="eliminar-${libro.id}">Eliminar</a>
+              <a href="#" class="btn btn-warning" color:white" id="editar-${libro.id}">Editar</a>
+              <a href="#/add" class="btn btn-success" color:white" id="add-${libro.id}">Add</a>
+            </div>`
 
-          console.log("Eliminado correctamente")
-          console.log(error)
+          const libroReserva = libroItem.querySelector(`#eliminar-${libro.id}`)
+          libroReserva.addEventListener('click', async(e)=>{
+            console.log("Boton eliminar")
+            const libroReservaId = e.target.id
+            const libroId = libroReservaId.replace("eliminar-", "")
+            //Conflicto pq si no tiene estado da error
+            //const confirmacion = window.confirm("¿Estás seguro de que quieres reservar este libro?");
+            swal("Desea eliminar el libro?",{
+                buttons:["Cancelar", "Confirmar"]
+            })
+            .then(async(value) => {
+              if (value) {
+                //swal({title:'Confirmado', icon:'success'})
+                await Libros.eliminar(libroId)
+                window.location = '#/admin'
+              } else {
+                swal({title:'Cancelado', icon:'warning'})
+                //console.log("Has hecho clic en el botón Cancelar");
+              }
+            })
+            //if (confirmacion) {
+            //await Libros.estado(libroId)
+            //}
+            
+           })
+          librosList.appendChild(libroItem)
+          const libroEdit = libroItem.querySelector(`#editar-${libro.id}`)
+          libroEdit.addEventListener('click', async(e)=>{
+            const libroEditId = e.target.id
+            const EditId = libroEditId.replace("editar-", "")
+            //Pasamos el id del libro mediante el header
+            const guardarId= document.querySelector('#guardar-id')
+            guardarId.value = EditId
+            window.location = '#/edit'
+
           })
-          //Boton Editar
-          const btnEditar = libroItem.querySelector(`#editar-${libro.id}`)
-          btnEditar.addEventListener('click', async(l)=>{
-          console.log("Boton editar")
-
-         })
-
-          librosList.appendChild(libroItem);
-        }); 
-       
+        })
 
         // Agregamos la lista de libros al elemento HTML con el ID "libros-list"
-        const librosListContainer = document.getElementById('libros-list');
-        librosListContainer.appendChild(librosList);
-      });
+        const librosListContainer = document.getElementById('libro-list')
+        librosListContainer.appendChild(librosList)
+      
       //FILTRO SEARCH
        const formsearch = document.querySelector('#search-id')
           formsearch.addEventListener('submit', async(e)=>{
             e.preventDefault();
             const texto =e.target.search.value
-            const { data: libros, error } = await supabase
-            .from('libros')
-            .select('*')
-            .ilike('titulo', `%${texto}%`);
+            const librosSearch = await Libros.getSearch(texto)
+            librosList.innerHTML = ""
           
-          if (error) {
-            console.log(error);
-          } else {
-            console.log(libros);
-          
-            librosList.innerHTML = "";
-          
-            libros.forEach((libro) => {
+            librosSearch.forEach((libro2) => {
               const nuevoLibro = document.createElement('div');
               nuevoLibro.classList.add('card', 'col-3', 'p-3', 'm-3');
-              nuevoLibro.style.width = '18rem';
+              nuevoLibro.style.width = '18rem'
               
               nuevoLibro.innerHTML = `
-                <img src="${libro.imagen}" class="card-img-top" alt="${libro.titulo} style="width: 200px; height: 220px;">
+                <img src="${libro2.imagen}" class="card-img-top" alt="${libro2.titulo} style="width: 200px; height: 220px;">
                 <div class="card-body">
-                  <h5 class="card-title">${libro.titulo}</h5>
-                  <p class="card-text">${libro.autor}</p>
-                  <a href="#" class="btn btn-primary">Reserva</a>
+                  <h5 class="card-title">${libro2.titulo}</h5>
+                  <p class="card-text">${libro2.autor}</p>
+                  <a href="#" class="btn" style="background-color:#00AF87;" id="reserva-${libro2.id}">Reserva</a>
                 </div>    
-              `;
-          
-              librosList.appendChild(nuevoLibro);
-            });
-            }
+              `
+              librosList.appendChild(nuevoLibro)
+            })
+            
 
           })
-
-          
-
-
-
-  },
-};
+  }
+}

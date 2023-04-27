@@ -87,7 +87,6 @@ export default {
                   <a href="#" class="btn" style="background-color:#00AF87;" id="reserva-${libro2.id}">Reserva</a>
                 </div>    
               `
-          
               librosList.appendChild(nuevoLibro)
             })
             

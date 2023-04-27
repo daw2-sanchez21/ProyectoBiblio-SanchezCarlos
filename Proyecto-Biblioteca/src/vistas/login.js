@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { User } from './user'
+import { header } from '../componentes/header';
 
 export default  {
   template: `<div class="container h-100" style="background-color:#77B7E1">
@@ -40,6 +41,7 @@ export default  {
        const usuarioLogeado = await User.login(userData)
        console.log("Logueado")
        window.location.href = '/#/libros'
+       header.script()
       }catch (error) {
         alert('No se ha podido iniciar sesión ' + error)
       }
