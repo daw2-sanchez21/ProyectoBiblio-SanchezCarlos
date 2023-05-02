@@ -8,7 +8,9 @@ export const enrutador = {
     reservas: import('../vistas/reservas.js'),
     admin: import('../vistas/adminLibros.js'),
     add: import('../vistas/añadirLibro.js'),
-    edit: import ('../vistas/editLibro.js')
+    edit: import ('../vistas/editLibro.js'),
+    descripcion: import ('../vistas/descripcionLibros.js'),
+    logout: import('../vistas/logout.js')
   },
 
   async router() {

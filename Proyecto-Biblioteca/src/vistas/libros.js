@@ -28,12 +28,21 @@ export default {
           libroItem.classList.add('card', 'col-3', 'p-3', 'm-3')
           libroItem.style.width = '18rem'
           libroItem.innerHTML = `
-            <img src="${libro.imagen}" class="card-img-top" alt="${libro.titulo} style="width: 200px; height: 220px;">
+            <img src="${libro.imagen}" id="img-${libro.id}" class="card-img-top" alt="${libro.titulo} style="width: 200px; height: 220px;">
             <div class="card-body">
               <h5 class="card-title">${libro.titulo}</h5>
               <p class="card-text">${libro.autor}</p>
               <a href="#" class="btn" style="background-color:#00AF87; color:white" id="reserva-${libro.id}">Reserva</a>
             </div>`
+          
+          const imagen = libroItem.querySelector(`#img-${libro.id}`)
+          imagen.addEventListener('click', async(e)=>{
+            const imagenId = e.target.id
+            const nuevoId = imagenId.replace("img-", "")
+            const guardarId= document.querySelector('#guardar-id')
+            guardarId.value = nuevoId
+            window.location = '#/descripcion'
+          })
 
           const libroReserva = libroItem.querySelector(`#reserva-${libro.id}`)
           libroReserva.addEventListener('click', async(e)=>{

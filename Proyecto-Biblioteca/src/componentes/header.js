@@ -37,6 +37,9 @@ export const header = {
             <li class="nav-item">
               <a class="nav-link" href="#/admin"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin<span></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#/logout"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">LogOut<span></a>
+            </li>
             
             `
     }else{

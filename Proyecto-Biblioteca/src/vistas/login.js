@@ -23,6 +23,7 @@ export default  {
   </form></div>
   </div></div></div></div>`,
   async script() {
+    header.script()
     console.log('pruebas supabase');
     const main= document.querySelector('main')
     main.style.backgroundColor='#77B7E1'
