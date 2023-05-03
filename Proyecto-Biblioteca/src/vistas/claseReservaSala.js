@@ -28,6 +28,19 @@ static async getAllReservas() {
         return new ReservaSalas(id, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado)
     })
 }
-
+static async reservar(sala, usuario) {
+  const { data, error } = await supabase
+  .from('reserva_sala')
+  .insert([
+    { usuario_id: `${usuario}`, sala_id: `${sala}`, fecha_reserva: "2023-04-10",fecha_fin: "2023-07-10", estado: "Reservado" },
+  ])
+    if(error){
+      swal({title:'Error',text:'Ya tienes una reserva en curso', icon:'warning'})
+    }else{
+      swal({title:'Reservado',text:`Has reservado el libro ${sala}`, icon:'success'})
+      //alert(`RESERVADO! Libro: ${libro} User: ${usuario}`)
+    }
+  
+}
 
 }

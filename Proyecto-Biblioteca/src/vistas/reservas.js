@@ -1,6 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 import { ReservaLibros } from './claseReservaLibros'
 import { ReservaSalas } from './claseReservaSala'
+import { Amonestaciones } from './claseAmonestaciones'
+import { Usuarios } from './usuarios'
+import { User } from './user'
 
 export default {
   template: `
@@ -15,7 +18,7 @@ export default {
       </div>
     </div>
     <div class="row d-flex align-items-center">
-      <div class="col-12 border  border-dark border-2 m-5 p-2 mx-auto align-self-center text-center rounded" style="background-color: #FFFFFF;" id="res-salas">
+      <div class="col-12 border  border-dark border-2 m-5 p-2 mx-auto align-self-center text-center rounded" style="background-color: #FFFFFF;" id="amonestaciones-id">
         <h2 class="border-bottom">Amonestaciones</h2>
         <p>No hay amonestaciónes</>
       </div>
@@ -62,7 +65,16 @@ export default {
           ` 
       reSala.appendChild(salaItem)
   })
-  
+
+  const amnt = document.querySelector('#amonestaciones-id')
+  const emailUser = await User.getUser()
+  //console.log(emailUser.email)
+  const userAmnt = await Usuarios.getUserByEmail(emailUser.email)
+  console.log("Este es el id: ",userAmnt.id)
+  const obtenerAmt = await Amonestaciones.getUserAmt(userAmnt.id)
+  console.log(obtenerAmt)//Dará null ojo
+  //const obtAmonestaciones = Amonestaciones.getUserAmt(user.email)
+  await User.getAllUsers()
   
 }
 }

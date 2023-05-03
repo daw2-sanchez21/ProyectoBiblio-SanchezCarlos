@@ -7,8 +7,11 @@ export const enrutador = {
     salas: import('../vistas/salas.js'),
     reservas: import('../vistas/reservas.js'),
     admin: import('../vistas/adminLibros.js'),
+    adminSalas: import('../vistas/adminSalas.js'),
     add: import('../vistas/añadirLibro.js'),
+    addSala: import('../vistas/añadirSala.js'),
     edit: import ('../vistas/editLibro.js'),
+    editSala: import('../vistas/editSala.js'),
     descripcion: import ('../vistas/descripcionLibros.js'),
     logout: import('../vistas/logout.js')
   },

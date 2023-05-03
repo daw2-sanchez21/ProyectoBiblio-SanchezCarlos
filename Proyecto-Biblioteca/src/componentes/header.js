@@ -17,45 +17,78 @@ export const header = {
   async script (){
     console.log('header')
     const nav = document.querySelector("#hd")
+    nav.innerHTML=``
+    nav.innerHTML=`
+            <li class="nav-item">
+              <a class="nav-link" href="#/login"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Login</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registre</span></a>
+            </li>
+         `
     //Hacer lógica más eficiente y probar en incognito pq guarda los usuarios
     const estado = await User.getUser()
+    //console.log("USUERE", estado.email)
+    const obtRol = await Usuarios.getByUserRol(estado.email)
+    console.log("ROLERO", obtRol.rol)
     console.log(estado)
-    if(estado){
-      nav.innerHTML=`
+      if(obtRol.rol === "default"){
+        nav.innerHTML=``
+        nav.innerHTML=`
             <li class="nav-item">
-              <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inici<span></a>
+              <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inici</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Llibres<span></a>
+              <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Llibres</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/salas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Sales<span></a>
+              <a class="nav-link" href="#/salas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Sales</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reserves<span></a>
+              <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reserves</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/admin"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin<span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#/logout"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">LogOut<span></a>
+              <a class="nav-link" href="#/logout"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">LogOut</span></a>
             </li>
             
             `
+      }else if(obtRol.rol === "admin"){
+        nav.innerHTML=``
+        nav.innerHTML=`
+        <li class="nav-item">
+          <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inici</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Llibres</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/salas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Sales</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reserves</span></a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#/admin"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Libros</span></a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#/adminSalas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Salas</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/logout"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">LogOut</span></a>
+        </li>
+        
+        `
     }else{
       nav.innerHTML=``
       nav.innerHTML=`
             <li class="nav-item">
-              <a class="nav-link" href="#/login"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Login<span></a>
+              <a class="nav-link" href="#/login"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Login</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registre<span></a>
+              <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registre</span></a>
             </li>
          `
     }
-    //header.script()
-    console.log("Esto es el mail: ", estado.email)
-    const rol = await Usuarios.getByUserRol(estado.email)
-    console.log("Esto es el rol ", rol.rol)
+    
 }
 }

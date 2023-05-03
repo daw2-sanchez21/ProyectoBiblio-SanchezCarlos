@@ -2,6 +2,7 @@
 import { createClient } from '@supabase/supabase-js'
 // import { supabase } from './supabase'
 import { supabase } from './supabase'
+import { ReservaSalas } from './claseReservaSala'
 
 console.log('Conecciton done')
 export class Salas {
@@ -40,4 +41,63 @@ export class Salas {
         return new Salas(id, created_at, nombre, aforo, sala_descripcion, imagen )
     })
   }
+  static async eliminar(salaId){
+    const { data, error } = await supabase 
+          .from('salas')
+          .delete()
+          .match({ id: `${salaId}` })
+    if(error){
+      swal({title:'No se ha podido eliminar',text:`${error}`, icon:'warning'})
+    }else{
+      swal({title:'Eliminado Correctamente', icon:'success'})
+    }
+  }
+  static async addSala(dataSala){
+    const { data, error } = await supabase
+    .from('salas')
+    .insert({
+      nombre: dataSala.nombre,
+      aforo: dataSala.aforo,
+      sala_descripcion: dataSala.sala_descripcion,
+      imagen: dataSala.imagen
+    })
+    if(error){
+      swal({title:'No se ha podido añadir la sala',text:`${error}`, icon:'warning'})
+    }else{
+      swal({title:'Añadido Correctamente', icon:'success'})
+    }
+  }
+  static async updateSala(dataSala) {
+    const { data, error } = await supabase
+      .from('salas')
+      .update({
+        nombre: `${dataSala.nombre}`,
+        aforo: `${dataSala.aforo}`,
+        sala_descripcion: `${dataSala.descripcion}`,
+        imagen: `${dataSala.imagen}`
+      })
+      .match({ id: `${dataSala.id}` })
+  
+    if (error) {
+      swal({ title: 'No se ha podido actualizar la sala', text: `${error}`, icon: 'warning' })
+    } else {
+      swal({ title: 'Actualizado', icon: 'success' })
+    }
+  }
+  static async estado(SalaId){
+    const { data, error } = await supabase 
+          .from('reserva_sala')
+          .select('estado')
+          .eq('id', `${SalaId}`)
+          if(data && data.length > 0 && data[0].estado=="Ocupada"){
+            //Mejorar alert para cuando el libro no esté disponible
+            swal({title:'No disponible', icon:'warning'})
+          
+          }else{
+            swal({title:'Confirmado', icon:'success'})
+            await ReservaSalas.reservar(SalaId, 1)
+            
+          }
+  }
+  
 }

@@ -6,8 +6,9 @@ import { supabase } from './supabase'
 console.log('Conecciton done')
 export class Usuarios {
   // Mapping de propiedades de la tabla perfiles
-  constructor (id= null, nombre=null, apellido=null, nick=null, email = null, password = null, rol=null) {
-    this.id = id;
+  constructor (id= null, created_at=null, nombre=null, apellido=null, nick=null, email = null, password = null, rol=null) {
+    this.id = id
+    this.created_at = created_at
     this.nombre = nombre
     this.apellido = apellido
     this.nick = nick
@@ -41,23 +42,34 @@ export class Usuarios {
     const { data: usuario , error } = await supabase
       .from('usuarios')
       .select('*')
-      .eq('id', id)
-      .single()
+      .eq('id', `${id}`)
     if (error) {
       throw new Error(error.message)
     }
-    return new Usuarios (usuario.id, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.rol )
+    return new Usuarios (usuario.id, usuario.created_at, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.password, usuario.rol )
   }
 
   static async getByUserRol(email) {
     const { data: usuario , error } = await supabase
       .from('usuarios')
       .select('rol')
-      .eq('email', email)
+      .eq('email', `${email}`)
       .single()
     if (error) {
       throw new Error(error.message)
     }
-    return new Usuarios (usuario.id, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.rol )
+    return new Usuarios (usuario.id, usuario.created_at, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.password, usuario.rol )
+  }
+
+  static async getUserByEmail (email) {
+    const { data: usuario , error } = await supabase
+      .from('usuarios')
+      .select('*')
+      .eq('email', `${email}`)
+      //console.log(usuario[0].id)
+    if (error) {
+      throw new Error(error.message)
+    }
+    return new Usuarios (usuario[0].id, usuario[0].nombre, usuario[0].apellido, usuario[0].nick, usuario[0].email, usuario[0].rol )
   }
 }

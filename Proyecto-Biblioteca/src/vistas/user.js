@@ -52,5 +52,14 @@ export class User {
       console.error(error);
     }
   }
+  static async getAllUsers () {
+    const { data, error } = await supabase.auth.api.listUsers("TofohfnkahpZa33nkOM/SCPCQDhN/rrjxeXokkdRNbqvP5hr648S4wFcv3IASZAroSzlHfSzDXLMjPMlD0/B9Q==")
+  if (error) {
+  console.log(error)
+} else {
+  console.log(data)
+}
+  }
+  
   
 }

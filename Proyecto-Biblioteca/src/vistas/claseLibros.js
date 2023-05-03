@@ -55,7 +55,7 @@ static async getAll() {
         return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen )
     })
   }
-  //Mejorar query para obtener el estado hacer join
+
   static async estado(libroId){
     const { data, error } = await supabase 
           .from('reserva_libros')
