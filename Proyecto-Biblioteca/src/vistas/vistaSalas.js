@@ -95,7 +95,8 @@ export class Salas {
           
           }else{
             swal({title:'Confirmado', icon:'success'})
-            await ReservaSalas.reservar(SalaId, 1)
+            const userId = document.querySelector('#guardarUser-id')
+            await ReservaSalas.reservar(SalaId, userId.value)
             
           }
   }

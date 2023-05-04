@@ -18,8 +18,14 @@ export default  {
       <label for="exampleInputPassword1" class="form-label"><span style="font-family: 'Open Sans', sans-serif;">Contrasenya:</span></label>
       <input type="password" class="form-control" id="password-id">
     </div>
-    
-    <button type="submit" class="btn" style="border-color:#77B7E1; font-family: 'Open Sans', sans-serif;">Entrar</button>
+    <div class="row">
+      <div class="col-4">
+        <button type="submit" class="btn" style="border-color:#77B7E1; font-family: 'Open Sans', sans-serif;">Entrar</button>
+      </div>
+      <div class="col-8">
+        <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registro</span></a>
+      </div>
+        </div>
   </form></div>
   </div></div></div></div>`,
   async script() {

@@ -15,6 +15,7 @@ export default {
       </div>
       <div class="col-5 border  border-dark border-2 m-4 mx-auto align-self-center text-center justify-content-center rounded" style="background-color: #FFFFFF;" id="res-salas">
         <h2 class="border-bottom">Mis salas</h2>
+        <p id="txt-reservas">No hay reservas</>
       </div>
     </div>
     <div class="row d-flex align-items-center">
@@ -37,8 +38,11 @@ export default {
     main.style.height='1000px'
     const res= document.querySelector('#res-libros')
     //Faltaria obtener el id del usuario y pasarlo como parametro
-    const reservaLibros = await ReservaLibros.getReservasByUserId(1)
+    const obtID = document.querySelector('#guardarUser-id')
+    console.log("Este es el id busc", obtID.value)
+    const reservaLibros = await ReservaLibros.getReservasByUserId(obtID.value)
     reservaLibros.forEach((reserva) => {
+          const txtreserva = document.querySelector('#txt-reservas')
           const libroItem = document.createElement('div')
           libroItem.classList.add('card', 'col-3', 'p-3', 'm-3')
           libroItem.style.width = '18rem'
@@ -48,11 +52,12 @@ export default {
               <p class="card-text">Fecha Reserva: ${reserva.fecha_reserva} Fecha entrega:  ${reserva.fecha_entrega} Estado: ${reserva.estado}</p>
             </div>
           `
-      res.appendChild(libroItem);
+          //if(reserva){txtreserva.style.display="none"}
+      res.appendChild(libroItem)
   })
   const reSala= document.querySelector('#res-salas')
     //Faltaria obtener el id del usuario y pasarlo como parametro
-    const reservaSalas = await ReservaSalas.getAllReservas()
+    const reservaSalas = await ReservaSalas.getReservasByUserId(obtID.value)
     reservaSalas.forEach((reserva) => {
           const salaItem = document.createElement('div')
           salaItem.classList.add('card', 'col-3', 'p-3', 'm-3')
@@ -66,15 +71,15 @@ export default {
       reSala.appendChild(salaItem)
   })
 
-  const amnt = document.querySelector('#amonestaciones-id')
-  const emailUser = await User.getUser()
+  //const amnt = document.querySelector('#amonestaciones-id')
+  //const emailUser = await User.getUser()
   //console.log(emailUser.email)
-  const userAmnt = await Usuarios.getUserByEmail(emailUser.email)
-  console.log("Este es el id: ",userAmnt.id)
-  const obtenerAmt = await Amonestaciones.getUserAmt(userAmnt.id)
-  console.log(obtenerAmt)//Dará null ojo
+  //const userAmnt = await Usuarios.getUserByEmail(emailUser.email)
+  //console.log("Este es el id: ",userAmnt.id)
+  //const obtenerAmt = await Amonestaciones.getUserAmt(userAmnt.id)
+  //console.log(obtenerAmt)//Dará null ojo
   //const obtAmonestaciones = Amonestaciones.getUserAmt(user.email)
-  await User.getAllUsers()
+ // await User.getAllUsers()
   
 }
 }

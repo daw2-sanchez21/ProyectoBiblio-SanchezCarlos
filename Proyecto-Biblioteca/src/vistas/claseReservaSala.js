@@ -12,7 +12,7 @@ export class ReservaSalas {
     this.usuario_id = usuario_id
     this.sala_id= sala_id
     this.fecha_reserva = fecha_reserva
-    this.fecha_entrega = fecha_fin
+    this.fecha_fin = fecha_fin
     this.estado = estado
   }
 
@@ -32,15 +32,28 @@ static async reservar(sala, usuario) {
   const { data, error } = await supabase
   .from('reserva_sala')
   .insert([
-    { usuario_id: `${usuario}`, sala_id: `${sala}`, fecha_reserva: "2023-04-10",fecha_fin: "2023-07-10", estado: "Reservado" },
+    { usuario_id: `${usuario}`, sala_id: `${sala}`, estado: "Reservado" },
   ])
     if(error){
       swal({title:'Error',text:'Ya tienes una reserva en curso', icon:'warning'})
     }else{
-      swal({title:'Reservado',text:`Has reservado el libro ${sala}`, icon:'success'})
+      swal({title:'Reservado',text:`Has reservado la sala ${sala}`, icon:'success'})
       //alert(`RESERVADO! Libro: ${libro} User: ${usuario}`)
     }
   
+}
+static async getReservasByUserId(id) {
+  const { data: reservas , error } = await supabase
+      .from('reserva_sala')
+      .select('*')
+      .eq('usuario_id', `${id}`)
+    if (error) {
+      throw new Error(error.message)
+    }
+    // devuelve array de objetos
+    return reservas.map(({  id, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado}) => {
+        return new ReservaSalas( id, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado)
+    })
 }
 
 }

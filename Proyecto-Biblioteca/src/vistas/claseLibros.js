@@ -66,8 +66,9 @@ static async getAll() {
             swal({title:'No disponible', icon:'warning'})
           
           }else{
+            const userId = document.querySelector('#guardarUser-id')
             swal({title:'Confirmado', icon:'success'})
-            await ReservaLibros.reservar(libroId, 1)
+            await ReservaLibros.reservar(libroId, userId.value)
             
           }
   }

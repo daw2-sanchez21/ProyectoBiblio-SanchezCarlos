@@ -52,7 +52,7 @@ export class Usuarios {
   static async getByUserRol(email) {
     const { data: usuario , error } = await supabase
       .from('usuarios')
-      .select('rol')
+      .select('*')
       .eq('email', `${email}`)
       .single()
     if (error) {

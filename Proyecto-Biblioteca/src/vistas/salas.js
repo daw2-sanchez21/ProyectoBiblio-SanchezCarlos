@@ -32,12 +32,36 @@ export default {
                 <h5 class="card-title">${sala.nombre}</h5>
                 <p class="card-text">${sala.sala_descripcion}</p>
                 <p class="card-text"><small class="text-muted">Aforo: ${sala.aforo}</small></p>
-                <a href="#" class="btn" style="background-color:#00AF87; color:white">Reserva</a>
+                <a href="#" class="btn" style="background-color:#00AF87; color:white" id="reserva-${sala.id}">Reserva</a>
               </div>
             </div>
           </div>
         </div>
           `
+          const salaReserva = salaItem.querySelector(`#reserva-${sala.id}`)
+          salaReserva.addEventListener('click', async(e)=>{
+            console.log("Boton reservar")
+            const salaReservaId = e.target.id
+            const salaId = salaReservaId.replace("reserva-", "")
+            //Conflicto pq si no tiene estado da error
+            //const confirmacion = window.confirm("¿Estás seguro de que quieres reservar este libro?");
+            swal("Desea reservar la sala?",{
+                buttons:["Cancelar", "Confirmar"]
+            })
+            .then(async(value) => {
+              if (value) {
+                //swal({title:'Confirmado', icon:'success'})
+                await Salas.estado(salaId)
+              } else {
+                swal({title:'Cancelado', icon:'warning'})
+                //console.log("Has hecho clic en el botón Cancelar");
+              }
+            })
+            //if (confirmacion) {
+            //await Libros.estado(libroId)
+            //}
+            
+           })
           salaList.appendChild(salaItem)
         })
         // Agregamos la lista de libros al elemento HTML con el ID "libros-list"
@@ -69,8 +93,10 @@ export default {
                   </div>
                 </div>
               </div>
-            </div>  
+             </div>  
               `
+
+                
               salaList.appendChild(nuevaSala)
             })
             })

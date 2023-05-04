@@ -57,7 +57,7 @@ static async reservar(libro, usuario) {
   const { data, error } = await supabase
   .from('reserva_libros')
   .insert([
-    { id_usuario: `${usuario}`, id_libro: `${libro}`, fecha_reserva: "2023-04-10",fecha_entrega: "2023-07-10", estado: "Reservado" },
+    { id_usuario: `${usuario}`, id_libro: `${libro}`, estado: "Reservado" },
   ])
     if(error){
       swal({title:'Error',text:'Ya tienes una reserva en curso', icon:'warning'})

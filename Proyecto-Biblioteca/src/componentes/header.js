@@ -13,25 +13,25 @@ export const header = {
       </ul>
     </div>
   </div>
-</nav><div id="guardar-id"></div>`,
+</nav><div id="guardar-id"></div><div id="guardarUser-id"></div>`,
   async script (){
     console.log('header')
     const nav = document.querySelector("#hd")
     nav.innerHTML=``
     nav.innerHTML=`
             <li class="nav-item">
-              <a class="nav-link" href="#/login"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Login</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registre</span></a>
+            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">Log-In</a></button>
             </li>
          `
     //Hacer lógica más eficiente y probar en incognito pq guarda los usuarios
     const estado = await User.getUser()
     //console.log("USUERE", estado.email)
+    const gUserId = document.querySelector('#guardarUser-id')
     const obtRol = await Usuarios.getByUserRol(estado.email)
     console.log("ROLERO", obtRol.rol)
-    console.log(estado)
+    console.log(obtRol)
+    gUserId.value= obtRol.id
+    console.log("Este es el id del usuario: ", gUserId.value)
       if(obtRol.rol === "default"){
         nav.innerHTML=``
         nav.innerHTML=`
@@ -48,7 +48,7 @@ export const header = {
               <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reserves</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/logout"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">LogOut</span></a>
+            <button class="btn btn-primary"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
             </li>
             
             `
@@ -73,8 +73,8 @@ export const header = {
         <li class="nav-item">
         <a class="nav-link" href="#/adminSalas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Salas</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#/logout"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">LogOut</span></a>
+        <li class="nav-item ms-4">
+          <button class="btn btn-danger"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
         </li>
         
         `
@@ -82,7 +82,7 @@ export const header = {
       nav.innerHTML=``
       nav.innerHTML=`
             <li class="nav-item">
-              <a class="nav-link" href="#/login"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Login</span></a>
+            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">LogIn</a></button>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registre</span></a>
