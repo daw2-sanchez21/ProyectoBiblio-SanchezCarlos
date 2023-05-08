@@ -57,7 +57,7 @@ export default {
             .then(async(value) => {
               if (value) {
                 //swal({title:'Confirmado', icon:'success'})
-                await Libros.estado(libroId)
+                await ReservaLibros.estado(libroId)
               } else {
                 swal({title:'Cancelado', icon:'warning'})
                 //console.log("Has hecho clic en el botón Cancelar");
@@ -93,9 +93,35 @@ export default {
                 <div class="card-body">
                   <h5 class="card-title">${libro2.titulo}</h5>
                   <p class="card-text">${libro2.autor}</p>
-                  <a href="#" class="btn" style="background-color:#00AF87;" id="reserva-${libro2.id}">Reserva</a>
+                  <a href="#" class="btn" style="background-color:#00AF87; color:white" id="reserva-${libro2.id}">Reserva</a>
                 </div>    
               `
+              //
+              const libroReserva = nuevoLibro.querySelector(`#reserva-${libro2.id}`)
+              libroReserva.addEventListener('click', async(e)=>{
+                console.log("Boton reservar")
+                const libroReservaId = e.target.id
+                const libroId = libroReservaId.replace("reserva-", "")
+                //Conflicto pq si no tiene estado da error
+                //const confirmacion = window.confirm("¿Estás seguro de que quieres reservar este libro?");
+                swal("Desea reservar el libro?",{
+                    buttons:["Cancelar", "Confirmar"]
+                })
+                .then(async(value) => {
+                  if (value) {
+                    //swal({title:'Confirmado', icon:'success'})
+                    await ReservaLibros.estado(libroId)
+                  } else {
+                    swal({title:'Cancelado', icon:'warning'})
+                    //console.log("Has hecho clic en el botón Cancelar");
+                  }
+                })
+                //if (confirmacion) {
+                //await Libros.estado(libroId)
+                //}
+                
+               })
+              //
               librosList.appendChild(nuevoLibro)
             })
             

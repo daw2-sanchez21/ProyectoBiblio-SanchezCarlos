@@ -100,5 +100,19 @@ export class Salas {
             
           }
   }
+  static async getByID(id) {
+    const { data: salas , error } = await supabase
+      .from('salas')
+      .select('*')
+      .eq('id', `${id}`)
+    if (error) {
+      throw new Error(error.message)
+    }
+    // devuelve array de objetos
+    return salas.map(({ id, created_at, nombre, aforo, sala_descripcion, imagen }) => {
+        return new Salas(id, created_at, nombre, aforo, sala_descripcion, imagen )
+    })
+  }
+  
   
 }

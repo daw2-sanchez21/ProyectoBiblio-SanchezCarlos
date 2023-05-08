@@ -10,6 +10,7 @@ export default {
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
         <button class="btn" style="border-color:#77B7E1;" type="submit">Search</button>
       </form>
+      <a href="#/add" class="btn btn-success ms-1" color:white" id="add-"> + Add</a>
     </div>
     <div class="container" id="libro-list"></div>
   `,
@@ -34,7 +35,6 @@ export default {
               <p class="card-text">${libro.autor}</p>
               <a href="#" class="btn btn-danger" color:white" id="eliminar-${libro.id}">Eliminar</a>
               <a href="#" class="btn btn-warning" color:white" id="editar-${libro.id}">Editar</a>
-              <a href="#/add" class="btn btn-success" color:white" id="add-${libro.id}">Add</a>
             </div>`
 
           const libroReserva = libroItem.querySelector(`#eliminar-${libro.id}`)

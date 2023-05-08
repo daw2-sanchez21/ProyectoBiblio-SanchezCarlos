@@ -8,6 +8,7 @@ export const enrutador = {
     reservas: import('../vistas/reservas.js'),
     admin: import('../vistas/adminLibros.js'),
     adminSalas: import('../vistas/adminSalas.js'),
+    adminUser: import('../vistas/adminUser.js'),
     add: import('../vistas/añadirLibro.js'),
     addSala: import('../vistas/añadirSala.js'),
     edit: import ('../vistas/editLibro.js'),

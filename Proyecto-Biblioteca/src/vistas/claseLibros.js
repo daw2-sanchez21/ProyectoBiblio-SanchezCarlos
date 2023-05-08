@@ -56,23 +56,6 @@ static async getAll() {
     })
   }
 
-  static async estado(libroId){
-    const { data, error } = await supabase 
-          .from('reserva_libros')
-          .select('estado')
-          .eq('id', `${libroId}`)
-          if(data && data.length > 0 && data[0].estado=="reservado"){
-            //Mejorar alert para cuando el libro no esté disponible
-            swal({title:'No disponible', icon:'warning'})
-          
-          }else{
-            const userId = document.querySelector('#guardarUser-id')
-            swal({title:'Confirmado', icon:'success'})
-            await ReservaLibros.reservar(libroId, userId.value)
-            
-          }
-  }
-
   static async eliminar(libroId){
     const { data, error } = await supabase 
           .from('libros')
@@ -117,11 +100,7 @@ static async getAll() {
     } else {
       swal({ title: 'Actualizado', icon: 'success' })
     }
-  }
-  
-
-  
-  
+  }  
 }
 
 

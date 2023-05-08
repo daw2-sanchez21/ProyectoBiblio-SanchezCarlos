@@ -8,6 +8,7 @@ export default {
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchSala">
         <button class="btn" style="border-color:#77B7E1;" type="submit">Search</button>
       </form>
+      <a href="#/addSala" class="btn btn-success ms-3" color:white" id="add-"> + Add</a>
     </div>
     <div class="container" id="sala-list"></div>
   `,
@@ -15,6 +16,7 @@ export default {
     console.log('pruebas supabase')
     const main= document.querySelector('main')
     main.style.backgroundColor='#FFFFFF'
+    main.style.height='auto'
     const salaList = document.createElement('div')
     salaList.classList.add('row');
 
@@ -34,7 +36,6 @@ export default {
                 <p class="card-text"><small class="text-muted">Aforo: ${sala.aforo}</small></p>
                 <a href="#" class="btn btn-danger" color:white" id="eliminar-${sala.id}">Eliminar</a>
                 <a href="#" class="btn btn-warning" color:white" id="editar-${sala.id}">Editar</a>
-                <a href="#/addSala" class="btn btn-success" color:white" id="add-${sala.id}">Add</a>
               </div>
             </div>
           </div>

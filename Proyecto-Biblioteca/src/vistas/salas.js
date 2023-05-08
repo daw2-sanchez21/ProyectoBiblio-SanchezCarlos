@@ -77,27 +77,42 @@ export default {
             salaList.innerHTML = "";
           
             salasSearch.forEach((sala) => {
-              const nuevaSala = document.createElement('div')
-              nuevaSala.innerHTML = `
-              <div class="card p-3 m-3 container-fluid">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="${sala.imagen}" class="img-fluid rounded-start" alt="${sala.nombre}">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">${sala.nombre}</h5>
-                    <p class="card-text">${sala.sala_descripcion}</p>
-                    <p class="card-text"><small class="text-muted">Aforo: ${sala.aforo}</small></p>
-                    <a href="#" class="btn btn-primary">Reserva</a>
-                  </div>
-                </div>
+              const salaItem = document.createElement('div')
+          salaItem.innerHTML = `
+          <div class="card p-3 m-3 container-fluid">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="${sala.imagen}" class="img-fluid rounded-start" alt="${sala.nombre}">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">${sala.nombre}</h5>
+                <p class="card-text">${sala.sala_descripcion}</p>
+                <p class="card-text"><small class="text-muted">Aforo: ${sala.aforo}</small></p>
+                <a href="#" class="btn" style="background-color:#00AF87; color:white" id="reserva-${sala.id}">Reserva</a>
               </div>
-             </div>  
-              `
-
+            </div>
+          </div>
+          </div>
+          `
+          const salaReserva = salaItem.querySelector(`#reserva-${sala.id}`)
+          salaReserva.addEventListener('click', async(e)=>{
+            console.log("Boton reservar")
+            const salaReservaId = e.target.id
+            const salaId = salaReservaId.replace("reserva-", "")
+            swal("Desea reservar la sala?",{
+                buttons:["Cancelar", "Confirmar"]
+            })
+            .then(async(value) => {
+              if (value) {
+                await Salas.estado(salaId)
+              } else {
+                swal({title:'Cancelado', icon:'warning'})
                 
-              salaList.appendChild(nuevaSala)
+              }
+            })
+           })
+              salaList.appendChild(salaItem)
             })
             })
   }

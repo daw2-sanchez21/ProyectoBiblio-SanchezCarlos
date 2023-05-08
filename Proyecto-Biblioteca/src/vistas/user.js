@@ -53,12 +53,14 @@ export class User {
     }
   }
   static async getAllUsers () {
-    const { data, error } = await supabase.auth.api.listUsers("TofohfnkahpZa33nkOM/SCPCQDhN/rrjxeXokkdRNbqvP5hr648S4wFcv3IASZAroSzlHfSzDXLMjPMlD0/B9Q==")
-  if (error) {
-  console.log(error)
-} else {
-  console.log(data)
-}
+    
+    const { data: { users }, error } = await supabase.auth.admin.listUsers()
+
+    if (users) {
+      return new User(users.id, users.email)
+    } else {
+      console.log(error)
+    }
   }
   
   

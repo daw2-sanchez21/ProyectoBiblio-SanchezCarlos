@@ -36,16 +36,16 @@ export const header = {
         nav.innerHTML=``
         nav.innerHTML=`
             <li class="nav-item">
-              <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inici</span></a>
+              <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inicio</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Llibres</span></a>
+              <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Libros</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/salas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Sales</span></a>
+              <a class="nav-link" href="#/salas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Salas</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reserves</span></a>
+              <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reservas</span></a>
             </li>
             <li class="nav-item">
             <button class="btn btn-primary"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
@@ -56,16 +56,16 @@ export const header = {
         nav.innerHTML=``
         nav.innerHTML=`
         <li class="nav-item">
-          <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inici</span></a>
+          <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inicio</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Llibres</span></a>
+          <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Libros</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/salas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Sales</span></a>
+          <a class="nav-link" href="#/salas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Salas</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reserves</span></a>
+          <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reservas</span></a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="#/admin"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Libros</span></a>
@@ -73,10 +73,24 @@ export const header = {
         <li class="nav-item">
         <a class="nav-link" href="#/adminSalas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Salas</span></a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#/adminUser"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Users</span></a>
+        </li>
         <li class="nav-item ms-4">
           <button class="btn btn-danger"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
         </li>
         
+        `
+    }else if(obtRol.rol === "Bloqueado"){
+        const body= document.querySelector('body')
+        body.innerHTML=''
+        body.innerHTML+=`
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="text-center">
+          <h1>Cuenta Suspendida</h1>
+          <p>Tu cuenta ha sido suspendida, para cualquier duda este es nuestro mail de contacto bibliotecaSupabase@gmail.com</p>
+        </div>
+        </div>
         `
     }else{
       nav.innerHTML=``

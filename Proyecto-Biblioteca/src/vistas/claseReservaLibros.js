@@ -53,6 +53,25 @@ static async getReservasByUserId(id) {
         return new ReservaLibros(id, id_usuario, id_libro, fecha_reserva, fecha_entrega, estado)
     })
 }
+//
+static async estado(libroId){
+  const { data, error } = await supabase 
+        .from('reserva_libros')
+        .select('estado')
+        .eq('id_libro', `${libroId}`)
+        if(data[data.length - 1].estado==="Reservado"){
+          //Mejorar alert para cuando el libro no esté disponible
+          swal({title:'No disponible', icon:'warning'})
+        }else{
+          console.log("Este es el estado",data[data.length - 1])
+          console.log("Dispo")
+          const userId = document.querySelector('#guardarUser-id')
+          swal({title:'Confirmado', icon:'success'})
+          await ReservaLibros.reservar(libroId, userId.value)
+          
+        }
+}
+//
 static async reservar(libro, usuario) {
   const { data, error } = await supabase
   .from('reserva_libros')
@@ -67,5 +86,18 @@ static async reservar(libro, usuario) {
     }
   
 }
+static async devolver(libro, usuario) {
+  const { data, error } = await supabase
+    .from('reserva_libros')
+    .update({ estado: 'Devuelto' })
+    .match({ id_usuario: usuario, id_libro: libro, estado: 'Reservado' })
+  if (error) {
+    swal({ title: 'Error', text: 'No se ha podido devolver', icon: 'warning' })
+  } else {
+    swal({ title: 'Devuelto', text: `Gracias, ya puedes reservar un nuevo libro `, icon: 'success' })
+    //alert(`RESERVADO! Libro: ${libro} User: ${usuario}`)
+  }
+}
+
 
 }

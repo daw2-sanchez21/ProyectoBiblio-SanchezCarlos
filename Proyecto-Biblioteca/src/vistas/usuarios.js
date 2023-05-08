@@ -16,6 +16,18 @@ export class Usuarios {
     this.password = password
     this.rol = rol
   }
+  static async getAll() {
+    const { data: usuario , error } = await supabase
+      .from('usuarios')
+      .select('*')
+    if (error) {
+      throw new Error(error.message)
+    }
+    return usuario.map(({ id, created_at, nombre, apellido, nick, email, password, rol }) => {
+      return new Usuarios(id, created_at, nombre, apellido, nick, email, password, rol)
+  })
+    
+  }
    // crear registro (método static que se puede leer desde la clase sin necesidad de crear una instancia)
    static async create (usuariosData) {
     const { error } = await supabase
@@ -71,5 +83,17 @@ export class Usuarios {
       throw new Error(error.message)
     }
     return new Usuarios (usuario[0].id, usuario[0].nombre, usuario[0].apellido, usuario[0].nick, usuario[0].email, usuario[0].rol )
+  }
+  static async bloquear(id) {
+    const { data: usuario , error } = await supabase
+      .from('usuarios')
+      .update({ rol: 'Bloqueado' })
+      .match({ id: `${id}`});
+    if (error) {
+      throw new Error(error.message)
+    }
+    swal({title:'Usuario Bloqueado', icon:'success'})
+    return true
+    
   }
 }

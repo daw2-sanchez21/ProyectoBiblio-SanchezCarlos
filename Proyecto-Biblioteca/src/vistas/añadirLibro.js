@@ -28,7 +28,7 @@ export default {
       <input type="text" class="form-control" id="imagen-id" >
     </div>
     
-    <button type="submit" class="btn btn-primary m-3">Añadir</button>
+    <button type="submit" class="btn btn-success m-3">Añadir</button>
   </form></div></div></div></div></div>`,
 
   async script() {
