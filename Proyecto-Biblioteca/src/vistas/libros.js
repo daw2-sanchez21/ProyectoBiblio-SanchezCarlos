@@ -77,15 +77,17 @@ export default {
       
       //FILTRO SEARCH
        const formsearch = document.querySelector('#search-id')
-          formsearch.addEventListener('submit', async(e)=>{
-            e.preventDefault();
-            const texto =e.target.search.value
+          formsearch.addEventListener('input', async(e)=>{
+            e.preventDefault()
+            const texto =e.target.value
+            console.log(texto)
             const librosSearch = await Libros.getSearch(texto)
             librosList.innerHTML = ""
           
             librosSearch.forEach((libro2) => {
-              const nuevoLibro = document.createElement('div');
-              nuevoLibro.classList.add('card', 'col-3', 'p-3', 'm-3');
+              const nuevoLibro = document.createElement('div')
+              //nuevoLibro.style.transition=  "width 2s, height 4s;"
+              nuevoLibro.classList.add('card', 'col-3', 'p-3', 'm-3', 'animacion')
               nuevoLibro.style.width = '18rem'
               
               nuevoLibro.innerHTML = `

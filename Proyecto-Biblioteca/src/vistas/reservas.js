@@ -111,6 +111,7 @@ export default {
               if (value) {
                 //swal({title:'Confirmado', icon:'success'})
                 await ReservaLibros.devolver(libroId, obtID.value)
+                window.location = '#/reservas'
               } else {
                 swal({title:'Cancelado', icon:'warning'})
                 //console.log("Has hecho clic en el botón Cancelar");

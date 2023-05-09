@@ -47,7 +47,7 @@ export default {
       <td>${reserva.fecha_entrega}</td>
       <td>${reserva.estado}</td>
       <td><a href="#" class="btn btn-danger" color:white" id = "confirmar" data-id-libro="${reserva.id_libro}" data-id-user="${reserva.id_usuario}"">Confirmar</a></td>
-      <td><a href="#" class="btn btn-warning" color:white" id="amonestar-${reserva.id_libro}">Amonestar</a></td>
+      <td><a href="#" class="btn btn-warning" color:white" id = "amonestar" data-id-user="${reserva.id_usuario}" data-id-res="${reserva.id}"">Amonestar</a></td>
         `
     
 
@@ -73,6 +73,31 @@ export default {
       }) 
       
      })
+    //
+    //
+    //
+    const userAmon = usuarioItem.querySelector(`#amonestar`)
+    userAmon.addEventListener('click', async(e)=>{
+    const res = userEliminar.getAttribute("data-id-res")
+    const user = userEliminar.getAttribute("data-id-user")
+    
+      swal("Desea confirmar la devolución?",{
+          buttons:["Cancelar", "Confirmar"]
+      })
+      .then(async(value) => {
+        if (value) {
+          swal({title:'Amonestado', icon:'success'})
+          
+          await ReservaLibros.confirmarDev(user, res)
+          window.location = '#/librospendientes'
+        } else {
+          swal({title:'Cancelado', icon:'warning'})
+          
+        }
+      }) 
+      
+     })
+    //
     //
     insTabla.appendChild(usuarioItem)
 

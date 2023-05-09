@@ -101,7 +101,7 @@ static async confirmarDev(libro, usuario) {
 static async devolver(libro, usuario) {
   const { data, error } = await supabase
     .from('reserva_libros')
-    .update({ estado: 'Pendiente' })
+    .update({ estado: 'Pending' })
     .match({ id_usuario: usuario, id_libro: libro, estado: 'Reservado' })
   if (error) {
     swal({ title: 'Error', text: 'No se ha podido devolver', icon: 'warning' })
