@@ -14,6 +14,7 @@ export const enrutador = {
     edit: import ('../vistas/editLibro.js'),
     editSala: import('../vistas/editSala.js'),
     descripcion: import ('../vistas/descripcionLibros.js'),
+    librospendientes: import('../vistas/librosPendientes.js'),
     logout: import('../vistas/logout.js')
   },
 

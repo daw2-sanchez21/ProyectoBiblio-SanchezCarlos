@@ -92,6 +92,29 @@ export const header = {
         </div>
         </div>
         `
+    }else if(obtRol.rol === "supervisor"){
+      nav.innerHTML=``
+      nav.innerHTML+=`
+          <li class="nav-item">
+            <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inicio</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/libros"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Libros</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/salas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Salas</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reservas</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/librospendientes"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Supervisor</span></a>
+          </li>
+          <li class="nav-item">
+          <button class="btn btn-primary"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+          </li>
+          
+          `
     }else{
       nav.innerHTML=``
       nav.innerHTML=`

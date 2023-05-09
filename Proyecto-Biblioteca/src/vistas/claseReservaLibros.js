@@ -86,10 +86,22 @@ static async reservar(libro, usuario) {
     }
   
 }
-static async devolver(libro, usuario) {
+static async confirmarDev(libro, usuario) {
   const { data, error } = await supabase
     .from('reserva_libros')
     .update({ estado: 'Devuelto' })
+    .match({ id_usuario: usuario, id_libro: libro, estado: 'Pending' })
+  if (error) {
+    swal({ title: 'Error', text: 'No se ha podido devolver', icon: 'warning' })
+  } else {
+    swal({ title: 'Devuelto', text: `Gracias, ya puedes reservar un nuevo libro `, icon: 'success' })
+    //alert(`RESERVADO! Libro: ${libro} User: ${usuario}`)
+  }
+}
+static async devolver(libro, usuario) {
+  const { data, error } = await supabase
+    .from('reserva_libros')
+    .update({ estado: 'Pendiente' })
     .match({ id_usuario: usuario, id_libro: libro, estado: 'Reservado' })
   if (error) {
     swal({ title: 'Error', text: 'No se ha podido devolver', icon: 'warning' })

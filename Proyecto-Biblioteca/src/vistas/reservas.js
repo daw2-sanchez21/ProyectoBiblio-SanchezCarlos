@@ -63,6 +63,22 @@ export default {
             </div>
           </div>
         </div>`
+          }else if(reserva.estado==="Pending"){
+            libroItem.innerHTML = `
+            <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="${imgLibro[0].imagen}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Número: #${reserva.id}</h5>
+                  <p class="card-text">Fecha Reserva: ${reserva.fecha_reserva}</br> Fecha entrega:  ${reserva.fecha_entrega} </br> Estado: ${reserva.estado}</p>
+                  <a href="#" class="btn disabled border border-warning" color:white" id="devolver-${reserva.id_libro}">Pending...</a>
+                </div>
+              </div>
+            </div>
+          </div>`
           }else{
           libroItem.innerHTML = `
           <div class="card mb-3" style="max-width: 540px;">
