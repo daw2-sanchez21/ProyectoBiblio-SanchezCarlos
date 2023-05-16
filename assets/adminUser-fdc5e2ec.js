@@ -1,0 +1,79 @@
+import "./claseLibros-d15c9d53.js";
+import { a as Usuarios } from "./main-300f7e38.js";
+const adminUser = {
+  template: `
+    <h1>Lista de Usuarios</h1>
+    <div class="container">
+      <form id="search-id" class="d-flex p-5">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
+        <button class="btn" style="border-color:#77B7E1;" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="container" id="user-list">
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Nick</th>
+        <th scope="col">Email</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Bloquear</th>
+        <th scope="col">Editar</th>
+      </tr>
+    </thead>
+    <tbody id="tabla">
+
+    </tbody>
+    </div>
+  `,
+  async script() {
+    const usuarios = await Usuarios.getAll();
+    const main = document.querySelector("main");
+    main.style.backgroundColor = "#FFFFFF";
+    main.style.height = "1000px";
+    const insTabla = document.querySelector("#tabla");
+    usuarios.forEach((usuario) => {
+      const usuarioItem = document.createElement("tr");
+      usuarioItem.innerHTML = `
+      <th scope="row">${usuario.id}</th>
+      <td>${usuario.nombre}</td>
+      <td>${usuario.apellido}</td>
+      <td>${usuario.nick}</td>
+      <td>${usuario.email}</td>
+      <td>${usuario.rol}</td>
+      <td><a href="#" class="btn btn-danger" color:white" id="eliminar-${usuario.id}">Eliminar</a></td>
+      <td><a href="#" class="btn btn-warning" color:white" id="editar-${usuario.id}">Editar</a></td>
+        `;
+      const userEliminar = usuarioItem.querySelector(`#eliminar-${usuario.id}`);
+      userEliminar.addEventListener("click", async (e) => {
+        console.log("Boton eliminar");
+        const userEliminarId = e.target.id;
+        const userId = userEliminarId.replace("eliminar-", "");
+        swal("Desea eliminar el usuario?", {
+          buttons: ["Cancelar", "Confirmar"]
+        }).then(async (value) => {
+          if (value) {
+            await Usuarios.bloquear(userId);
+            window.location = "#/adminUser";
+          } else {
+            swal({ title: "Cancelado", icon: "warning" });
+          }
+        });
+        const usuarioEdit = usuarioItem.querySelector(`#editar-${usuario.id}`);
+        usuarioEdit.addEventListener("click", async (e2) => {
+          const usuarioEditId = e2.target.id;
+          const usuarioId = usuarioEditId.replace("editar-", "");
+          const guardarId = document.querySelector("#guardar-id");
+          guardarId.value = usuarioId;
+          window.location = "#/editUser";
+        });
+      });
+      insTabla.appendChild(usuarioItem);
+    });
+  }
+};
+export {
+  adminUser as default
+};
