@@ -34,7 +34,7 @@ export default {
     console.log("this: ", reservas)
     const main= document.querySelector('main')
     main.style.backgroundColor='#FFFFFF'
-    main.style.height='1000px'
+    main.style.height='auto'
     const insTabla = document.querySelector('#tabla')
     reservas.forEach((reserva) => {
       const usuarioItem = document.createElement('tr')

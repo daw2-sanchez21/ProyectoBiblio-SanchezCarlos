@@ -3,7 +3,6 @@ import { createClient } from '@supabase/supabase-js'
 // import { supabase } from './supabase'
 import { supabase } from './supabase'
 
-console.log('Conecciton done')
 export class Usuarios {
   // Mapping de propiedades de la tabla perfiles
   constructor (id= null, created_at=null, nombre=null, apellido=null, nick=null, email = null, password = null, rol=null) {
@@ -16,6 +15,7 @@ export class Usuarios {
     this.password = password
     this.rol = rol
   }
+  //Obtener todos los usuarios
   static async getAll() {
     const { data: usuario , error } = await supabase
       .from('usuarios')
@@ -28,17 +28,22 @@ export class Usuarios {
   })
     
   }
-   // crear registro (método static que se puede leer desde la clase sin necesidad de crear una instancia)
+   //Crear nuevo usuario a partir de los datos recibidos
    static async create (usuariosData) {
     const { error } = await supabase
       .from('usuarios')
       .insert(usuariosData)
       .select()
     if (error) {
+      // Cargamos la página login
+      window.location.href = '/#/registro'
       throw new Error(error.message)
     }
+    // Cargamos la página login
+    window.location.href = '/#/login'
     return true
-  }
+    }
+  //Obtener el usuario por email
   static async getId (email) {
     const { data: usuarios , error } = await supabase
       .from('usuarios')
@@ -50,6 +55,7 @@ export class Usuarios {
     }
     return usuarios
   }
+  //Obtener usuario por id
   static async getByUserId(id) {
     const { data: usuario , error } = await supabase
       .from('usuarios')
@@ -58,9 +64,10 @@ export class Usuarios {
     if (error) {
       throw new Error(error.message)
     }
-    return new Usuarios (usuario.id, usuario.created_at, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.password, usuario.rol )
+    return new Usuarios (usuario.id, usuario.created_at, usuario.nombre, 
+      usuario.apellido, usuario.nick, usuario.email, usuario.password, usuario.rol )
   }
-
+  //Obtener usuario por email y luego extraer el rol
   static async getByUserRol(email) {
     const { data: usuario , error } = await supabase
       .from('usuarios')
@@ -70,7 +77,8 @@ export class Usuarios {
     if (error) {
       throw new Error(error.message)
     }
-    return new Usuarios (usuario.id, usuario.created_at, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.password, usuario.rol )
+    return new Usuarios (usuario.id, usuario.created_at, usuario.nombre, 
+      usuario.apellido, usuario.nick, usuario.email, usuario.password, usuario.rol )
   }
 
   static async getUserByEmail (email) {
@@ -84,6 +92,7 @@ export class Usuarios {
     }
     return new Usuarios (usuario[0].id, usuario[0].nombre, usuario[0].apellido, usuario[0].nick, usuario[0].email, usuario[0].rol )
   }
+  //Bloquear usuario por id
   static async bloquear(id) {
     const { data: usuario , error } = await supabase
       .from('usuarios')

@@ -3,7 +3,7 @@ import { Usuarios } from '../vistas/usuarios'
 export const header = {
   template: `<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <a class="navbar-brand biblio" href="#"><span class="text-dark" style="font-size:24px">Biblioteca</span><span style="color:#77B7E1; font-size:24px;">Llefià</span></a>
+    <a class="navbar-brand biblio" href="#"><span class="text-dark" style="font-size:26px; font-weight: bold;">Biblioteca</span><span style="color:#77B7E1; font-size:26px; font-weight: bold;">Llefià</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -48,7 +48,7 @@ export const header = {
               <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reservas</span></a>
             </li>
             <li class="nav-item">
-            <button class="btn btn-primary"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+            <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Logout</a></button>
             </li>
             
             `
@@ -77,7 +77,7 @@ export const header = {
         <a class="nav-link" href="#/adminUser"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Users</span></a>
         </li>
         <li class="nav-item ms-4">
-          <button class="btn btn-danger"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
         </li>
         
         `
@@ -111,7 +111,7 @@ export const header = {
             <a class="nav-link" href="#/librospendientes"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Supervisor</span></a>
           </li>
           <li class="nav-item">
-          <button class="btn btn-primary"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
           </li>
           
           `
@@ -119,10 +119,10 @@ export const header = {
       nav.innerHTML=``
       nav.innerHTML=`
             <li class="nav-item">
-            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">LogIn</a></button>
+              <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inicio</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registre</span></a>
+            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">LogIn</a></button>
             </li>
          `
     }

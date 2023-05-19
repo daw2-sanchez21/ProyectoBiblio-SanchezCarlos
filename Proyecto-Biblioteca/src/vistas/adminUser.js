@@ -33,7 +33,8 @@ export default {
     const usuarios = await Usuarios.getAll()
     const main= document.querySelector('main')
     main.style.backgroundColor='#FFFFFF'
-    main.style.height='1000px'
+    main.style.backgroundImage='url("")'
+    main.style.height='auto'
     const insTabla = document.querySelector('#tabla')
     usuarios.forEach((usuario) => {
       const usuarioItem = document.createElement('tr')

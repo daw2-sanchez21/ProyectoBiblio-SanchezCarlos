@@ -16,6 +16,7 @@ export default {
     console.log('pruebas supabase')
     const main= document.querySelector('main')
     main.style.backgroundColor='#FFFFFF'
+    main.style.backgroundImage='url("")'
     main.style.height='auto'
     const salaList = document.createElement('div')
     salaList.classList.add('row');

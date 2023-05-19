@@ -19,7 +19,7 @@ export default {
     const main= document.querySelector('main')
     main.style.backgroundColor='#FFFFFF'
     main.style.height='auto'
-
+    main.style.backgroundImage='url("")'
     const librosList = document.createElement('div')
     librosList.classList.add('row')
 

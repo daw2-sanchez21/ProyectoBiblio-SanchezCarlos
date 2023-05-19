@@ -9,10 +9,10 @@ import { Salas } from './vistaSalas'
 
 export default {
   template: `
-  <div class="container-fluid vh-100 d-flex justify-content-center align-items-center mt-5">
+  <div class="container-fluid  d-flex justify-content-center align-items-center mt-5" id="video">
   <div class="container m-5 p-5">
     <div class="row d-flex align-items-center">
-      <div class="col-5 border  border-dark border-2 m-4 mx-auto align-self-center text-center justify-content-center rounded" style="background-color: #FFFFFF;" id="res-libros">
+      <div class="col-5 border border-dark border-2 m-4 mx-auto align-self-center text-center justify-content-center rounded" style="background-color: #FFFFFF;" id="res-libros">
         <h2 class="border-bottom">Mis libros</h2>
       </div>
       <div class="col-5 border  border-dark border-2 m-4 mx-auto align-self-center text-center justify-content-center rounded" style="background-color: #FFFFFF;" id="res-salas">
@@ -22,7 +22,7 @@ export default {
     <div class="row d-flex align-items-center">
       <div class="col-12 border  border-dark border-2 m-5 p-2 mx-auto align-self-center text-center rounded" style="background-color: #FFFFFF;" id="amonestaciones-id">
         <h2 class="border-bottom">Amonestaciones</h2>
-        <p>No hay amonestaciónes</>
+        <p id="p-amt">No hay amonestaciónes</p>
       </div>
     </div>
   </div>
@@ -35,7 +35,8 @@ export default {
     console.log('Reservas')
     const main= document.querySelector('main')
     //main.style.backgroundImage('https://cdn.pixabay.com/photo/2020/10/09/20/09/library-5641389_640.jpg')
-    main.style.backgroundColor='#77B7E1'
+    //main.style.backgroundColor='#77B7E1'
+    main.style.backgroundImage='url("img/lb3.jpg")'
     main.style.height='auto'
     const res= document.querySelector('#res-libros')
     //Faltaria obtener el id del usuario y pasarlo como parametro

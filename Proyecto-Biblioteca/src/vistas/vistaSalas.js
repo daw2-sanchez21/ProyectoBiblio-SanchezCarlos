@@ -72,8 +72,8 @@ export class Salas {
       .from('salas')
       .update({
         nombre: `${dataSala.nombre}`,
-        aforo: `${dataSala.aforo}`,
         sala_descripcion: `${dataSala.descripcion}`,
+        aforo: `${dataSala.aforo}`,
         imagen: `${dataSala.imagen}`
       })
       .match({ id: `${dataSala.id}` })

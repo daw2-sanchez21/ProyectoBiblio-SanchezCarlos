@@ -34,6 +34,7 @@ export default {
   async script() {
     const main= document.querySelector('main')
     main.style.backgroundColor='#77B7E1'
+    main.style.backgroundImage='url("")'
     main.style.height='1000px'
     const form = document.querySelector('#form-id')
     form.addEventListener('submit', async (e) => {

@@ -17,6 +17,7 @@ export default {
     
     const main= document.querySelector('main')
     main.style.backgroundColor='#FFFFFF'
+    main.style.backgroundImage='url("")'
     main.style.height='auto'
 
     const librosList = document.createElement('div')

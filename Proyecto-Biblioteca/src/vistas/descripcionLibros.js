@@ -10,7 +10,7 @@ export default {
   async script() {
     const main= document.querySelector('main')
     main.style.backgroundColor='#77B7E1'
-    main.style.height='1000px'
+    main.style.height='auto'
 
     const recId = document.querySelector('#guardar-id')
     const libro = await Libros.getAllByID(recId.value)

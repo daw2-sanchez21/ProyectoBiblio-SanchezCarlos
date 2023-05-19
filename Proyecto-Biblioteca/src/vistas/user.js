@@ -16,7 +16,7 @@ export class User {
     // USER LOGIN
       const { data, error } = await supabase.auth.signInWithPassword(userData)
       if (error) {
-        throw new Error(error.message)
+        swal({title:'Error', text:'Debe confirmar su email, revisa la bandeja de entrada de tu correo' , icon:'warning'})
       }
       return new User(data.user.id, data.user.email)
     }
@@ -24,9 +24,9 @@ export class User {
         const { data, error } = await supabase.auth.signUp(userData)
     
         if (error) {
-          throw new Error(error.message)
+          swal({title:'Error al crear el usuario', icon:'danger'})
         }
-        console.log('usuario creado correctamente ', data)
+        swal({title:'Usuario Creado', icon:'success'})
         return new User(data.user.id,data.user.email)
     }
     static async logout(){
