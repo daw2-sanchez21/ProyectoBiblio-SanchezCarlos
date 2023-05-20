@@ -119,12 +119,9 @@ export default {
                     //console.log("Has hecho clic en el botón Cancelar");
                   }
                 })
-                //if (confirmacion) {
-                //await Libros.estado(libroId)
-                //}
                 
                })
-              //
+            
               librosList.appendChild(nuevoLibro)
             })
             
