@@ -4,12 +4,6 @@ import { Usuarios } from "./usuarios"
 export default {
   template: `
     <h1>Lista de Usuarios</h1>
-    <div class="container">
-      <form id="search-id" class="d-flex p-5">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
-        <button class="btn" style="border-color:#77B7E1;" type="submit">Search</button>
-      </form>
-    </div>
     <div class="container" id="user-list">
     <table class="table">
     <thead>

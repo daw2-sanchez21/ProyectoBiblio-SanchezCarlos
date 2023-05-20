@@ -6,7 +6,7 @@ import { ReservaLibros } from './claseReservaLibros';
 console.log('Conecciton done')
 export class Libros {
   // Mapping de propiedades de la tabla perfiles
-  constructor (id=null, created_at=null, titulo=null, autor = null, isbn = null, fecha_publicacion=null, imagen=null) {
+  constructor (id=null, created_at=null, titulo=null, autor = null, isbn = null, fecha_publicacion=null, imagen=null, descripcion=null) {
     this.id = id
     this.created_at = created_at
     this.titulo= titulo
@@ -14,6 +14,7 @@ export class Libros {
     this.isbn = isbn
     this.fecha_publicacion = fecha_publicacion
     this.imagen = imagen
+    this.descripcion = descripcion
   }
 
 
@@ -25,8 +26,8 @@ static async getAll() {
       throw new Error(error.message)
     }
     // devuelve array de objetos
-    return libros.map(({ id, created_at, titulo, autor, isbn, fecha_publicacion, imagen }) => {
-        return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen )
+    return libros.map(({ id, created_at, titulo, autor, isbn, fecha_publicacion, imagen, descripcion }) => {
+        return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen, descripcion )
     })
   }
   static async getAllByID(id) {
@@ -38,8 +39,8 @@ static async getAll() {
       throw new Error(error.message)
     }
     // devuelve array de objetos
-    return libros.map(({ id, created_at, titulo, autor, isbn, fecha_publicacion, imagen }) => {
-        return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen )
+    return libros.map(({ id, created_at, titulo, autor, isbn, fecha_publicacion, imagen, descripcion }) => {
+        return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen, descripcion )
     })
   }
   static async getSearch(texto) {
@@ -51,8 +52,8 @@ static async getAll() {
       throw new Error(error.message)
     }
      //devuelve array de objetos
-    return libros.map(({ id, created_at, titulo, autor, isbn, fecha_publicacion, imagen }) => {
-        return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen )
+    return libros.map(({ id, created_at, titulo, autor, isbn, fecha_publicacion, imagen, descripcion }) => {
+        return new Libros(id, created_at, titulo, autor, isbn, fecha_publicacion, imagen, descripcion )
     })
   }
 
@@ -91,7 +92,8 @@ static async getAll() {
         autor: `${dataLibro.autor}`,
         isbn: `${dataLibro.isbn}`,
         fecha_publicacion: `${dataLibro.fecha}`,
-        imagen: `${dataLibro.imagen}`
+        imagen: `${dataLibro.imagen}`,
+        descripcion: `${dataLibro.descripcion}`
       })
       .match({ id: `${dataLibro.id}` })
   
