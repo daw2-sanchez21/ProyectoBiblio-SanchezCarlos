@@ -1,4 +1,4 @@
-import { U as User, a as Usuarios } from "./main-300f7e38.js";
+import { U as User, a as Usuarios } from "./main-965f3a72.js";
 const registro = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
@@ -8,31 +8,31 @@ const registro = {
         <h2 class="mb-3">Registro</h2>
     <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Nombre:</label>
-      <input type="text" class="form-control" id="nombre-id" aria-describedby="emailHelp" pattern="[A-Za-z]{2,}>
+      <input type="text" class="form-control" id="nombre-id" pattern="[A-Za-z]+"  required>
       
     </div>
     <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Apellido:</label>
-      <input type="text" class="form-control" id="apellido-id" aria-describedby="emailHelp" pattern="[A-Za-z]{2,}">
+      <input type="text" class="form-control" id="apellido-id" pattern="[A-Za-z]+"  required>
       <div class="invalid-feedback">El apellido no es correcto</div>
     </div>
     <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Nick:</label>
-      <input type="text" class="form-control" id="nick-id" aria-describedby="emailHelp">
+      <input type="text" class="form-control" id="nick-id" pattern="[A-Za-z0-9]+" required>
     </div>
     <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Email:</label>
-      <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp" pattern="[a-zA-Z0-9.@]" required />
+      <input type="email" class="form-control" id="email-id"  required />
       <div class="invalid-feedback">El Email no es correcto</div>
     </div>
     <div class="m-3">
-      <label for="exampleInputPassword1" class="form-label">Password:</label>
-      <input type="password" class="form-control" id="password-id"  pattern="[A-Za-z0-9]{8,}">
+      <label for="exampleInputPassword1" class="form-label">Password:</label></br>
+      <small class="form-text text-muted">La contraseña debe contener 8 caracteres y números.</small>
+      <input type="password" class="form-control" id="password-id" pattern="[A-Za-z0-9]+" required >
       <div class="invalid-feedback">
                 La contraseña debe contener 8 letras o números.
             </div>
     </div>
-    
     <button type="submit" class="btn btn-primary m-3">Sign Up</button>
   </form></div></div></div></div></div>`,
   async script() {
@@ -43,6 +43,7 @@ const registro = {
     const formUser = document.querySelector("#form-id");
     formUser.addEventListener("submit", async (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const rol = "default";
       try {
         const usuario = {
@@ -52,7 +53,7 @@ const registro = {
         const nuevoUser = await User.create(usuario);
       } catch (error) {
         console.log(error);
-        alert("Error al crear usuario");
+        swal({ title: "Error al crear el usuario", icon: "warning" });
       }
       try {
         const perfilData = {
@@ -64,11 +65,8 @@ const registro = {
           rol
         };
         await Usuarios.create(perfilData);
-        alert("Usuario creado con éxito");
-        window.location.href = "/#/login";
       } catch (error) {
         console.log(error);
-        alert("Error al crear usuario");
       }
       try {
         const user = document.querySelector("#email-id").value;

@@ -1,5 +1,5 @@
-import { R as ReservaLibros } from "./claseLibros-d15c9d53.js";
-import "./main-300f7e38.js";
+import { R as ReservaLibros } from "./claseLibros-f3e48699.js";
+import "./main-965f3a72.js";
 const librosPendientes = {
   template: `
     <h1>Lista de Usuarios</h1>
@@ -33,7 +33,7 @@ const librosPendientes = {
     console.log("this: ", reservas);
     const main = document.querySelector("main");
     main.style.backgroundColor = "#FFFFFF";
-    main.style.height = "1000px";
+    main.style.height = "auto";
     const insTabla = document.querySelector("#tabla");
     reservas.forEach((reserva) => {
       const usuarioItem = document.createElement("tr");

@@ -1,6 +1,6 @@
-import { h as header, U as User } from "./main-300f7e38.js";
+import { h as header, U as User } from "./main-965f3a72.js";
 const login = {
-  template: `<div class="container h-100" style="background-color:#77B7E1">
+  template: `<div class="container h-100">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-md-4">
       <div class="card">
@@ -12,7 +12,7 @@ const login = {
       <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp">
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label"><span style="font-family: 'Open Sans', sans-serif;">Contrasenya:</span></label>
+      <label for="exampleInputPassword1" class="form-label"><span style="font-family: 'Open Sans', sans-serif;">Contraseña:</span></label>
       <input type="password" class="form-control" id="password-id">
     </div>
     <div class="row">
@@ -20,7 +20,7 @@ const login = {
         <button type="submit" class="btn" style="border-color:#77B7E1; font-family: 'Open Sans', sans-serif;">Entrar</button>
       </div>
       <div class="col-8">
-        <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registro</span></a>
+        <a class="nav-link mt-1" href="#/registro"><span style="color:#000000; font-size:16px; font-family: 'Open Sans', sans-serif; text-decoration: underline;">Registro</span></a>
       </div>
         </div>
   </form></div>
@@ -29,7 +29,7 @@ const login = {
     header.script();
     console.log("pruebas supabase");
     const main = document.querySelector("main");
-    main.style.backgroundColor = "#77B7E1";
+    main.style.backgroundImage = 'url("img/lb3.jpg")';
     main.style.height = "1000px";
     const formLogin = document.querySelector("#form-id");
     formLogin.addEventListener("submit", async (e) => {
@@ -45,7 +45,7 @@ const login = {
         window.location.href = "/#/libros";
         header.script();
       } catch (error) {
-        alert("No se ha podido iniciar sesión " + error);
+        swal({ title: "Error", text: "Las credenciales no son correcta o no estás registrado correctamente", icon: "warning" });
       }
     });
   }

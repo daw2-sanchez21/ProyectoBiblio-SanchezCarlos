@@ -1,5 +1,5 @@
-import { L as Libros } from "./claseLibros-d15c9d53.js";
-import "./main-300f7e38.js";
+import { L as Libros } from "./claseLibros-f3e48699.js";
+import "./main-965f3a72.js";
 const descripcionLibros = {
   template: `
     <h1>Descripción Libro</h1>
@@ -8,7 +8,7 @@ const descripcionLibros = {
   async script() {
     const main = document.querySelector("main");
     main.style.backgroundColor = "#77B7E1";
-    main.style.height = "1000px";
+    main.style.height = "auto";
     const recId = document.querySelector("#guardar-id");
     const libro = await Libros.getAllByID(recId.value);
     const contLibro = document.querySelector("#libro-cont");

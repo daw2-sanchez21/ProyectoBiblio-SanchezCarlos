@@ -1,5 +1,5 @@
-import "./claseLibros-d15c9d53.js";
-import { a as Usuarios } from "./main-300f7e38.js";
+import "./claseLibros-f3e48699.js";
+import { a as Usuarios } from "./main-965f3a72.js";
 const adminUser = {
   template: `
     <h1>Lista de Usuarios</h1>
@@ -32,7 +32,8 @@ const adminUser = {
     const usuarios = await Usuarios.getAll();
     const main = document.querySelector("main");
     main.style.backgroundColor = "#FFFFFF";
-    main.style.height = "1000px";
+    main.style.backgroundImage = 'url("")';
+    main.style.height = "auto";
     const insTabla = document.querySelector("#tabla");
     usuarios.forEach((usuario) => {
       const usuarioItem = document.createElement("tr");

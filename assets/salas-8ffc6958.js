@@ -1,5 +1,5 @@
-import { S as Salas } from "./vistaSalas-23017d0b.js";
-import "./main-300f7e38.js";
+import { S as Salas } from "./vistaSalas-b55a49a7.js";
+import "./main-965f3a72.js";
 const salas = {
   template: `
     <h1>Lista de salas</h1>
@@ -15,6 +15,7 @@ const salas = {
     console.log("pruebas supabase");
     const main = document.querySelector("main");
     main.style.backgroundColor = "#FFFFFF";
+    main.style.backgroundImage = 'url("")';
     const salaList = document.createElement("div");
     salaList.classList.add("row");
     const salas2 = await Salas.getAllSalas();

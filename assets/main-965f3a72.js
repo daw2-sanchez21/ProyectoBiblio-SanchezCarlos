@@ -11221,16 +11221,16 @@ class User {
   static async login(userData) {
     const { data, error } = await supabase.auth.signInWithPassword(userData);
     if (error) {
-      throw new Error(error.message);
+      swal({ title: "Error", text: "Debe confirmar su email, revisa la bandeja de entrada de tu correo", icon: "warning" });
     }
     return new User(data.user.id, data.user.email);
   }
   static async create(userData) {
     const { data, error } = await supabase.auth.signUp(userData);
     if (error) {
-      throw new Error(error.message);
+      swal({ title: "Error al crear el usuario", icon: "danger" });
     }
-    console.log("usuario creado correctamente ", data);
+    swal({ title: "Usuario Creado", icon: "success" });
     return new User(data.user.id, data.user.email);
   }
   static async logout() {
@@ -11262,7 +11262,6 @@ class User {
     }
   }
 }
-console.log("Conecciton done");
 class Usuarios {
   // Mapping de propiedades de la tabla perfiles
   constructor(id = null, created_at = null, nombre = null, apellido = null, nick = null, email = null, password = null, rol = null) {
@@ -11275,6 +11274,7 @@ class Usuarios {
     this.password = password;
     this.rol = rol;
   }
+  //Obtener todos los usuarios
   static async getAll() {
     const { data: usuario, error } = await supabase.from("usuarios").select("*");
     if (error) {
@@ -11284,14 +11284,17 @@ class Usuarios {
       return new Usuarios(id, created_at, nombre, apellido, nick, email, password, rol);
     });
   }
-  // crear registro (método static que se puede leer desde la clase sin necesidad de crear una instancia)
+  //Crear nuevo usuario a partir de los datos recibidos
   static async create(usuariosData) {
     const { error } = await supabase.from("usuarios").insert(usuariosData).select();
     if (error) {
+      window.location.href = "/#/registro";
       throw new Error(error.message);
     }
+    window.location.href = "/#/login";
     return true;
   }
+  //Obtener el usuario por email
   static async getId(email) {
     const { data: usuarios, error } = await supabase.from("usuarios").select("id").eq("email", email).single();
     if (error) {
@@ -11299,19 +11302,39 @@ class Usuarios {
     }
     return usuarios;
   }
+  //Obtener usuario por id
   static async getByUserId(id) {
     const { data: usuario, error } = await supabase.from("usuarios").select("*").eq("id", `${id}`);
     if (error) {
       throw new Error(error.message);
     }
-    return new Usuarios(usuario.id, usuario.created_at, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.password, usuario.rol);
+    return new Usuarios(
+      usuario.id,
+      usuario.created_at,
+      usuario.nombre,
+      usuario.apellido,
+      usuario.nick,
+      usuario.email,
+      usuario.password,
+      usuario.rol
+    );
   }
+  //Obtener usuario por email y luego extraer el rol
   static async getByUserRol(email) {
     const { data: usuario, error } = await supabase.from("usuarios").select("*").eq("email", `${email}`).single();
     if (error) {
       throw new Error(error.message);
     }
-    return new Usuarios(usuario.id, usuario.created_at, usuario.nombre, usuario.apellido, usuario.nick, usuario.email, usuario.password, usuario.rol);
+    return new Usuarios(
+      usuario.id,
+      usuario.created_at,
+      usuario.nombre,
+      usuario.apellido,
+      usuario.nick,
+      usuario.email,
+      usuario.password,
+      usuario.rol
+    );
   }
   static async getUserByEmail(email) {
     const { data: usuario, error } = await supabase.from("usuarios").select("*").eq("email", `${email}`);
@@ -11320,6 +11343,7 @@ class Usuarios {
     }
     return new Usuarios(usuario[0].id, usuario[0].nombre, usuario[0].apellido, usuario[0].nick, usuario[0].email, usuario[0].rol);
   }
+  //Bloquear usuario por id
   static async bloquear(id) {
     const { data: usuario, error } = await supabase.from("usuarios").update({ rol: "Bloqueado" }).match({ id: `${id}` });
     if (error) {
@@ -11332,7 +11356,7 @@ class Usuarios {
 const header = {
   template: `<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <a class="navbar-brand biblio" href="#"><span class="text-dark" style="font-size:24px">Biblioteca</span><span style="color:#77B7E1; font-size:24px;">Llefià</span></a>
+    <a class="navbar-brand biblio" href="#"><span class="text-dark" style="font-size:26px; font-weight: bold;">Biblioteca</span><span style="color:#77B7E1; font-size:26px; font-weight: bold;">Llefià</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11375,7 +11399,7 @@ const header = {
               <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reservas</span></a>
             </li>
             <li class="nav-item">
-            <button class="btn btn-primary"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+            <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Logout</a></button>
             </li>
             
             `;
@@ -11404,7 +11428,7 @@ const header = {
         <a class="nav-link" href="#/adminUser"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Users</span></a>
         </li>
         <li class="nav-item ms-4">
-          <button class="btn btn-danger"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
         </li>
         
         `;
@@ -11438,7 +11462,7 @@ const header = {
             <a class="nav-link" href="#/librospendientes"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Supervisor</span></a>
           </li>
           <li class="nav-item">
-          <button class="btn btn-primary"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
           </li>
           
           `;
@@ -11446,10 +11470,10 @@ const header = {
       nav.innerHTML = ``;
       nav.innerHTML = `
             <li class="nav-item">
-            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">LogIn</a></button>
+              <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inicio</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/registro"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Registre</span></a>
+            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">LogIn</a></button>
             </li>
          `;
     }
@@ -11472,22 +11496,22 @@ const footer = {
 };
 const enrutador = {
   rutas: {
-    login: __vitePreload(() => import("./login-cbb99b5c.js"), true ? [] : void 0, import.meta.url),
-    home: __vitePreload(() => import("./home-de39cbc7.js"), true ? [] : void 0, import.meta.url),
-    registro: __vitePreload(() => import("./registro-dc68f240.js"), true ? [] : void 0, import.meta.url),
-    libros: __vitePreload(() => import("./libros-03b27a36.js"), true ? ["./libros-03b27a36.js","./claseLibros-d15c9d53.js"] : void 0, import.meta.url),
-    salas: __vitePreload(() => import("./salas-e00c75c5.js"), true ? ["./salas-e00c75c5.js","./vistaSalas-23017d0b.js"] : void 0, import.meta.url),
-    reservas: __vitePreload(() => import("./reservas-c6089adc.js"), true ? ["./reservas-c6089adc.js","./claseLibros-d15c9d53.js","./vistaSalas-23017d0b.js"] : void 0, import.meta.url),
-    admin: __vitePreload(() => import("./adminLibros-be5ba5af.js"), true ? ["./adminLibros-be5ba5af.js","./claseLibros-d15c9d53.js"] : void 0, import.meta.url),
-    adminSalas: __vitePreload(() => import("./adminSalas-fe50c386.js"), true ? ["./adminSalas-fe50c386.js","./vistaSalas-23017d0b.js"] : void 0, import.meta.url),
-    adminUser: __vitePreload(() => import("./adminUser-fdc5e2ec.js"), true ? ["./adminUser-fdc5e2ec.js","./claseLibros-d15c9d53.js"] : void 0, import.meta.url),
-    add: __vitePreload(() => import("./añadirLibro-280808ef.js"), true ? ["./añadirLibro-280808ef.js","./claseLibros-d15c9d53.js"] : void 0, import.meta.url),
-    addSala: __vitePreload(() => import("./añadirSala-5b4ba057.js"), true ? ["./añadirSala-5b4ba057.js","./claseLibros-d15c9d53.js","./vistaSalas-23017d0b.js"] : void 0, import.meta.url),
-    edit: __vitePreload(() => import("./editLibro-fe83e2a4.js"), true ? ["./editLibro-fe83e2a4.js","./claseLibros-d15c9d53.js"] : void 0, import.meta.url),
-    editSala: __vitePreload(() => import("./editSala-0d74df99.js"), true ? ["./editSala-0d74df99.js","./claseLibros-d15c9d53.js","./vistaSalas-23017d0b.js"] : void 0, import.meta.url),
-    descripcion: __vitePreload(() => import("./descripcionLibros-bcfd274b.js"), true ? ["./descripcionLibros-bcfd274b.js","./claseLibros-d15c9d53.js"] : void 0, import.meta.url),
-    librospendientes: __vitePreload(() => import("./librosPendientes-2555c4fc.js"), true ? ["./librosPendientes-2555c4fc.js","./claseLibros-d15c9d53.js"] : void 0, import.meta.url),
-    logout: __vitePreload(() => import("./logout-2279edb1.js"), true ? [] : void 0, import.meta.url)
+    login: __vitePreload(() => import("./login-01fa5f30.js"), true ? [] : void 0, import.meta.url),
+    home: __vitePreload(() => import("./home-85fdd8df.js"), true ? [] : void 0, import.meta.url),
+    registro: __vitePreload(() => import("./registro-d88ef5e0.js"), true ? [] : void 0, import.meta.url),
+    libros: __vitePreload(() => import("./libros-42db1d37.js"), true ? ["./libros-42db1d37.js","./claseLibros-f3e48699.js"] : void 0, import.meta.url),
+    salas: __vitePreload(() => import("./salas-8ffc6958.js"), true ? ["./salas-8ffc6958.js","./vistaSalas-b55a49a7.js"] : void 0, import.meta.url),
+    reservas: __vitePreload(() => import("./reservas-38efc80e.js"), true ? ["./reservas-38efc80e.js","./claseLibros-f3e48699.js","./vistaSalas-b55a49a7.js"] : void 0, import.meta.url),
+    admin: __vitePreload(() => import("./adminLibros-e196a933.js"), true ? ["./adminLibros-e196a933.js","./claseLibros-f3e48699.js"] : void 0, import.meta.url),
+    adminSalas: __vitePreload(() => import("./adminSalas-384fd7a8.js"), true ? ["./adminSalas-384fd7a8.js","./vistaSalas-b55a49a7.js"] : void 0, import.meta.url),
+    adminUser: __vitePreload(() => import("./adminUser-e3e1874c.js"), true ? ["./adminUser-e3e1874c.js","./claseLibros-f3e48699.js"] : void 0, import.meta.url),
+    add: __vitePreload(() => import("./añadirLibro-5bb48672.js"), true ? ["./añadirLibro-5bb48672.js","./claseLibros-f3e48699.js"] : void 0, import.meta.url),
+    addSala: __vitePreload(() => import("./añadirSala-e23fa851.js"), true ? ["./añadirSala-e23fa851.js","./claseLibros-f3e48699.js","./vistaSalas-b55a49a7.js"] : void 0, import.meta.url),
+    edit: __vitePreload(() => import("./editLibro-24c32dc9.js"), true ? ["./editLibro-24c32dc9.js","./claseLibros-f3e48699.js"] : void 0, import.meta.url),
+    editSala: __vitePreload(() => import("./editSala-a0ec999c.js"), true ? ["./editSala-a0ec999c.js","./claseLibros-f3e48699.js","./vistaSalas-b55a49a7.js"] : void 0, import.meta.url),
+    descripcion: __vitePreload(() => import("./descripcionLibros-90e109ff.js"), true ? ["./descripcionLibros-90e109ff.js","./claseLibros-f3e48699.js"] : void 0, import.meta.url),
+    librospendientes: __vitePreload(() => import("./librosPendientes-8ad05f40.js"), true ? ["./librosPendientes-8ad05f40.js","./claseLibros-f3e48699.js"] : void 0, import.meta.url),
+    logout: __vitePreload(() => import("./logout-08d7aee0.js"), true ? [] : void 0, import.meta.url)
   },
   async router() {
     const pathCompleto = window.location.hash;

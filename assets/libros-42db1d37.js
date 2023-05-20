@@ -1,5 +1,5 @@
-import { L as Libros, R as ReservaLibros } from "./claseLibros-d15c9d53.js";
-import "./main-300f7e38.js";
+import { L as Libros, R as ReservaLibros } from "./claseLibros-f3e48699.js";
+import "./main-965f3a72.js";
 const libros = {
   template: `
     <h1>Lista de Libros</h1>
@@ -14,6 +14,7 @@ const libros = {
   async script() {
     const main = document.querySelector("main");
     main.style.backgroundColor = "#FFFFFF";
+    main.style.backgroundImage = 'url("")';
     main.style.height = "auto";
     const librosList = document.createElement("div");
     librosList.classList.add("row");

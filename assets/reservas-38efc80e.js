@@ -1,13 +1,13 @@
-import { R as ReservaLibros, L as Libros } from "./claseLibros-d15c9d53.js";
-import { R as ReservaSalas, S as Salas } from "./vistaSalas-23017d0b.js";
-import "./main-300f7e38.js";
+import { R as ReservaLibros, L as Libros } from "./claseLibros-f3e48699.js";
+import { R as ReservaSalas, S as Salas } from "./vistaSalas-b55a49a7.js";
+import "./main-965f3a72.js";
 console.log("Conecciton done");
 const reservas = {
   template: `
-  <div class="container-fluid vh-100 d-flex justify-content-center align-items-center mt-5">
+  <div class="container-fluid  d-flex justify-content-center align-items-center mt-5" id="video">
   <div class="container m-5 p-5">
     <div class="row d-flex align-items-center">
-      <div class="col-5 border  border-dark border-2 m-4 mx-auto align-self-center text-center justify-content-center rounded" style="background-color: #FFFFFF;" id="res-libros">
+      <div class="col-5 border border-dark border-2 m-4 mx-auto align-self-center text-center justify-content-center rounded" style="background-color: #FFFFFF;" id="res-libros">
         <h2 class="border-bottom">Mis libros</h2>
       </div>
       <div class="col-5 border  border-dark border-2 m-4 mx-auto align-self-center text-center justify-content-center rounded" style="background-color: #FFFFFF;" id="res-salas">
@@ -17,7 +17,7 @@ const reservas = {
     <div class="row d-flex align-items-center">
       <div class="col-12 border  border-dark border-2 m-5 p-2 mx-auto align-self-center text-center rounded" style="background-color: #FFFFFF;" id="amonestaciones-id">
         <h2 class="border-bottom">Amonestaciones</h2>
-        <p>No hay amonestaciónes</>
+        <p id="p-amt">No hay amonestaciónes</p>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@ const reservas = {
   async script() {
     console.log("Reservas");
     const main = document.querySelector("main");
-    main.style.backgroundColor = "#77B7E1";
+    main.style.backgroundImage = 'url("img/lb3.jpg")';
     main.style.height = "auto";
     const res = document.querySelector("#res-libros");
     const obtID = document.querySelector("#guardarUser-id");

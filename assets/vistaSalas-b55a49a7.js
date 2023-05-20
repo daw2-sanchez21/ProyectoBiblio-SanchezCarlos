@@ -1,4 +1,4 @@
-import { s as supabase } from "./main-300f7e38.js";
+import { s as supabase } from "./main-965f3a72.js";
 console.log("Conecciton done");
 class ReservaSalas {
   // Mapping de propiedades de la tabla perfiles
@@ -93,8 +93,8 @@ class Salas {
   static async updateSala(dataSala) {
     const { data, error } = await supabase.from("salas").update({
       nombre: `${dataSala.nombre}`,
-      aforo: `${dataSala.aforo}`,
       sala_descripcion: `${dataSala.descripcion}`,
+      aforo: `${dataSala.aforo}`,
       imagen: `${dataSala.imagen}`
     }).match({ id: `${dataSala.id}` });
     if (error) {
