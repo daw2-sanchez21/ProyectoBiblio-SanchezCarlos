@@ -1,5 +1,5 @@
-import { L as Libros, R as ReservaLibros } from "./claseLibros-f3e48699.js";
-import "./main-965f3a72.js";
+import { L as Libros, R as ReservaLibros } from "./claseLibros-c43a2a6c.js";
+import "./main-0bcf348b.js";
 const libros = {
   template: `
     <h1>Lista de Libros</h1>

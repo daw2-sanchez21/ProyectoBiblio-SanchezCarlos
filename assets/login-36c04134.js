@@ -1,4 +1,4 @@
-import { h as header, U as User } from "./main-965f3a72.js";
+import { h as header, U as User } from "./main-0bcf348b.js";
 const login = {
   template: `<div class="container h-100">
   <div class="row justify-content-center align-items-center h-100">
@@ -29,7 +29,7 @@ const login = {
     header.script();
     console.log("pruebas supabase");
     const main = document.querySelector("main");
-    main.style.backgroundImage = 'url("img/lb3.jpg")';
+    main.style.backgroundColor = "#77B7E1";
     main.style.height = "1000px";
     const formLogin = document.querySelector("#form-id");
     formLogin.addEventListener("submit", async (e) => {

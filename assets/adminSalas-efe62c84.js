@@ -1,5 +1,5 @@
-import { S as Salas } from "./vistaSalas-b55a49a7.js";
-import "./main-965f3a72.js";
+import { S as Salas } from "./vistaSalas-a7ecf0db.js";
+import "./main-0bcf348b.js";
 const adminSalas = {
   template: `
     <h1>Lista de salas</h1>

@@ -1,6 +1,6 @@
-import { R as ReservaLibros, L as Libros } from "./claseLibros-f3e48699.js";
-import { R as ReservaSalas, S as Salas } from "./vistaSalas-b55a49a7.js";
-import "./main-965f3a72.js";
+import { R as ReservaLibros, L as Libros } from "./claseLibros-c43a2a6c.js";
+import { R as ReservaSalas, S as Salas } from "./vistaSalas-a7ecf0db.js";
+import "./main-0bcf348b.js";
 console.log("Conecciton done");
 const reservas = {
   template: `
@@ -28,6 +28,7 @@ const reservas = {
   async script() {
     console.log("Reservas");
     const main = document.querySelector("main");
+    main.style.backgroundColor = "#77B7E1";
     main.style.backgroundImage = 'url("img/lb3.jpg")';
     main.style.height = "auto";
     const res = document.querySelector("#res-libros");
