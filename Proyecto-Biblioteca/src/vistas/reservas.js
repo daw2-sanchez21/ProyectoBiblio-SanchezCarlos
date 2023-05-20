@@ -35,7 +35,7 @@ export default {
     console.log('Reservas')
     const main= document.querySelector('main')
     //main.style.backgroundImage('https://cdn.pixabay.com/photo/2020/10/09/20/09/library-5641389_640.jpg')
-    //main.style.backgroundColor='#77B7E1'
+    main.style.backgroundColor='#77B7E1'
     main.style.backgroundImage='url("img/lb3.jpg")'
     main.style.height='auto'
     const res= document.querySelector('#res-libros')
