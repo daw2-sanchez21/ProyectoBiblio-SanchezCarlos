@@ -32,7 +32,8 @@ export default  {
     header.script()
     console.log('pruebas supabase');
     const main= document.querySelector('main')
-    main.style.backgroundImage='url("img/lb3.jpg")'
+    //main.style.backgroundImage='url("img/lb3.jpg")'
+    main.style.backgroundColor='#77B7E1'
     main.style.height='1000px'
     const formLogin = document.querySelector('#form-id')
     formLogin.addEventListener('submit', async(e)=>{
