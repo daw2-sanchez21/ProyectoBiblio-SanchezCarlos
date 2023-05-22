@@ -1,4 +1,4 @@
-import { s as supabase } from "./main-0963e69a.js";
+import { s as supabase } from "./main-ea9e3bc0.js";
 console.log("Conecciton done");
 class ReservaSalas {
   // Mapping de propiedades de la tabla perfiles

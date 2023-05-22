@@ -1,12 +1,12 @@
-import { L as Libros } from "./claseLibros-97d4dedf.js";
-import "./main-0963e69a.js";
-const a_adirLibro = {
+import { L as Libros } from "./claseLibros-f015239d.js";
+import "./main-ea9e3bc0.js";
+const editLibro = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-md-4">
       <div class="card">
         <div class="card-body"><form id="form-id">
-        <h2 class="mb-3">Nuevo libro</h2>
+        <h2 class="mb-3">Editar libro</h2>
     <div class="m-3">
       <label class="form-label">Titulo:</label>
       <input type="text" class="form-control" id="titulo-id">    
@@ -34,8 +34,9 @@ const a_adirLibro = {
   async script() {
     const main = document.querySelector("main");
     main.style.backgroundColor = "#77B7E1";
-    main.style.backgroundImage = 'url("")';
     main.style.height = "1000px";
+    const obtenerId = document.querySelector("#guardar-id");
+    console.log(obtenerId.value);
     const form = document.querySelector("#form-id");
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -46,17 +47,18 @@ const a_adirLibro = {
       const fecha = form2.querySelector("#fecha-id");
       const imagen = form2.querySelector("#imagen-id");
       const dataLibro = {
+        id: obtenerId.value,
         titulo: titulo.value,
         autor: autor.value,
         isbn: isbn.value,
         fecha: fecha.value,
         imagen: imagen.value
       };
-      await Libros.addLibro(dataLibro);
+      await Libros.updateLibro(dataLibro);
       window.location = "#/admin";
     });
   }
 };
 export {
-  a_adirLibro as default
+  editLibro as default
 };

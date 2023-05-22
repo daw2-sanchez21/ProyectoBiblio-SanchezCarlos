@@ -1,5 +1,5 @@
-import { L as Libros } from "./claseLibros-97d4dedf.js";
-import "./main-0963e69a.js";
+import { L as Libros } from "./claseLibros-f015239d.js";
+import "./main-ea9e3bc0.js";
 const adminLibros = {
   template: `
     <h1>Lista de Usuarios</h1>

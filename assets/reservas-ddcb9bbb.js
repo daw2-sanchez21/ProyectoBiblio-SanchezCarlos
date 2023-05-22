@@ -1,6 +1,6 @@
-import { R as ReservaLibros, L as Libros } from "./claseLibros-97d4dedf.js";
-import { R as ReservaSalas, S as Salas } from "./vistaSalas-1943f211.js";
-import "./main-0963e69a.js";
+import { R as ReservaLibros, L as Libros } from "./claseLibros-f015239d.js";
+import { R as ReservaSalas, S as Salas } from "./vistaSalas-8f7ccf5b.js";
+import "./main-ea9e3bc0.js";
 console.log("Conecciton done");
 const reservas = {
   template: `
@@ -17,7 +17,7 @@ const reservas = {
     <div class="row d-flex align-items-center">
       <div class="col-12 border  border-dark border-2 m-5 p-2 mx-auto align-self-center text-center rounded" style="background-color: #FFFFFF;" id="amonestaciones-id">
         <h2 class="border-bottom">Amonestaciones</h2>
-        <p id="p-amt">No hay amonestaciónes</p>
+        
       </div>
     </div>
   </div>
@@ -32,6 +32,7 @@ const reservas = {
     main.style.height = "auto";
     main.style.minHeight = "1000px";
     const res = document.querySelector("#res-libros");
+    res.style.minHeight = "300px";
     const obtID = document.querySelector("#guardarUser-id");
     console.log("Este es el id busc", obtID.value);
     const reservaLibros = await ReservaLibros.getReservasByUserId(obtID.value);
@@ -108,6 +109,7 @@ const reservas = {
       res.appendChild(libroItem);
     }
     const reSala = document.querySelector("#res-salas");
+    reSala.style.minHeight = "300px";
     const reservaSalas = await ReservaSalas.getReservasByUserId(obtID.value);
     for (const reserva of reservaSalas) {
       const imgSala = await Salas.getByID(reserva.sala_id);
@@ -116,7 +118,7 @@ const reservas = {
           <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="${imgSala[0].imagen}" style="height:100%; width:100%;" class="img-fluid rounded-start" alt="...">
+              <img src="${imgSala[0].imagen}" style="height:100%; width:100%;" class="img-fluid rounded-start" alt="Imagen Libro">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -128,6 +130,8 @@ const reservas = {
         </div>`;
       reSala.appendChild(salaItem);
     }
+    const amnt = document.querySelector("#amonestaciones-id");
+    amnt.style.minHeight = "200px";
   }
 };
 export {

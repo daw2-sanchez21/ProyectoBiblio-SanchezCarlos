@@ -1,4 +1,4 @@
-import { U as User, a as Usuarios } from "./main-0963e69a.js";
+import { U as User, a as Usuarios } from "./main-ea9e3bc0.js";
 const registro = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">

@@ -1,5 +1,5 @@
-import "./claseLibros-97d4dedf.js";
-import { a as Usuarios } from "./main-0963e69a.js";
+import "./claseLibros-f015239d.js";
+import { a as Usuarios } from "./main-ea9e3bc0.js";
 const adminUser = {
   template: `
     <h1>Lista de Usuarios</h1>
@@ -56,14 +56,14 @@ const adminUser = {
             swal({ title: "Cancelado", icon: "warning" });
           }
         });
-        const usuarioEdit = usuarioItem.querySelector(`#editar-${usuario.id}`);
-        usuarioEdit.addEventListener("click", async (e2) => {
-          const usuarioEditId = e2.target.id;
-          const usuarioId = usuarioEditId.replace("editar-", "");
-          const guardarId = document.querySelector("#guardar-id");
-          guardarId.value = usuarioId;
-          window.location = "#/editUser";
-        });
+      });
+      const usuarioEdit = usuarioItem.querySelector(`#editar-${usuario.id}`);
+      usuarioEdit.addEventListener("click", async (e) => {
+        const usuarioEditId = e.target.id;
+        const usuarioId = usuarioEditId.replace("editar-", "");
+        const guardarId = document.querySelector("#guardar-id");
+        guardarId.value = usuarioId;
+        window.location = "#/editUser";
       });
       insTabla.appendChild(usuarioItem);
     });

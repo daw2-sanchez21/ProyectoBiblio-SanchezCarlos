@@ -1,6 +1,6 @@
-import "./claseLibros-97d4dedf.js";
-import { S as Salas } from "./vistaSalas-1943f211.js";
-import "./main-0963e69a.js";
+import "./claseLibros-f015239d.js";
+import { S as Salas } from "./vistaSalas-8f7ccf5b.js";
+import "./main-ea9e3bc0.js";
 const a_adirSala = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
