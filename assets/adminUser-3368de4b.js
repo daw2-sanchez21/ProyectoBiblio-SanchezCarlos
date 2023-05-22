@@ -1,5 +1,5 @@
-import "./claseLibros-c43a2a6c.js";
-import { a as Usuarios } from "./main-0bcf348b.js";
+import "./claseLibros-97d4dedf.js";
+import { a as Usuarios } from "./main-0963e69a.js";
 const adminUser = {
   template: `
     <h1>Lista de Usuarios</h1>

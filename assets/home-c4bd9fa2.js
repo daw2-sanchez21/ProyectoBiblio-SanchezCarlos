@@ -1,4 +1,4 @@
-import "./main-0bcf348b.js";
+import "./main-0963e69a.js";
 const home = {
   template: `
     <div class="container-fluid">
@@ -15,7 +15,7 @@ const home = {
             </div>
             <div class="col-6">
                 <h2>Qui som?</h2>
-                <p>LLSM, és un sistema de gestió de serveis que ofereix la biblioteca de llefià, a la nostra web podràs buscar el teu llibre favorit i reservar-lo des de casa i posteriorment acudir a la biblioteca a recollir-lo. A més, oferim les nostres sales perquè puguis acudir i gaudir de la lectura. Regsitra't per poder beneficiar-te de tots els serveis.</p>
+                <p>LLSM, és un sistema de gestió de serveis que ofereix la biblioteca de llefià, a la nostra web podràs buscar el teu llibre favorit i reservar-lo des de casa i posteriorment acudir a la biblioteca a recollir-lo. A més, oferim les nostres sales perquè puguis acudir i gaudir de la lectura. Regsitra't per poder beneficiar-te de tots els serveis. </p>
             </div>
         </div>
     </div>

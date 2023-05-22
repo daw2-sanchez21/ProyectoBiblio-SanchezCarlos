@@ -1,13 +1,13 @@
-import "./claseLibros-c43a2a6c.js";
-import { S as Salas } from "./vistaSalas-a7ecf0db.js";
-import "./main-0bcf348b.js";
-const a_adirSala = {
+import "./claseLibros-97d4dedf.js";
+import { S as Salas } from "./vistaSalas-1943f211.js";
+import "./main-0963e69a.js";
+const editSala = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-md-4">
       <div class="card">
         <div class="card-body"><form id="form-id">
-        <h2 class="mb-3">Nueva Sala</h2>
+        <h2 class="mb-3">Editar Sala</h2>
     <div class="m-3">
       <label class="form-label">Titulo:</label>
       <input type="text" class="form-control" id="nombre-id">    
@@ -26,12 +26,14 @@ const a_adirSala = {
       <input type="text" class="form-control" id="imagen-id" >
     </div>
     
-    <button type="submit" class="btn btn-success m-3">Añadir</button>
+    <button type="submit" class="btn btn-success m-3">Editar</button>
   </form></div></div></div></div></div>`,
   async script() {
     const main = document.querySelector("main");
     main.style.backgroundColor = "#77B7E1";
     main.style.height = "1000px";
+    const obtenerId = document.querySelector("#guardar-id");
+    console.log("sala value id: ", obtenerId.value);
     const form = document.querySelector("#form-id");
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -44,13 +46,14 @@ const a_adirSala = {
         nombre: nombre.value,
         aforo: aforo.value,
         descripcion: descripcion.value,
-        imagen: imagen.value
+        imagen: imagen.value,
+        id: obtenerId.value
       };
-      await Salas.addSala(dataSala);
+      await Salas.updateSala(dataSala);
       window.location = "#/adminSalas";
     });
   }
 };
 export {
-  a_adirSala as default
+  editSala as default
 };

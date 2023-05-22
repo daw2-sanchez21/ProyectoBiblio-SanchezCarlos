@@ -1,6 +1,6 @@
-import { R as ReservaLibros, L as Libros } from "./claseLibros-c43a2a6c.js";
-import { R as ReservaSalas, S as Salas } from "./vistaSalas-a7ecf0db.js";
-import "./main-0bcf348b.js";
+import { R as ReservaLibros, L as Libros } from "./claseLibros-97d4dedf.js";
+import { R as ReservaSalas, S as Salas } from "./vistaSalas-1943f211.js";
+import "./main-0963e69a.js";
 console.log("Conecciton done");
 const reservas = {
   template: `
@@ -29,8 +29,8 @@ const reservas = {
     console.log("Reservas");
     const main = document.querySelector("main");
     main.style.backgroundColor = "#77B7E1";
-    main.style.backgroundImage = 'url("img/lb3.jpg")';
     main.style.height = "auto";
+    main.style.minHeight = "1000px";
     const res = document.querySelector("#res-libros");
     const obtID = document.querySelector("#guardarUser-id");
     console.log("Este es el id busc", obtID.value);

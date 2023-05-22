@@ -1,4 +1,4 @@
-import { s as supabase } from "./main-0bcf348b.js";
+import { s as supabase } from "./main-0963e69a.js";
 console.log("Conecciton done");
 class ReservaSalas {
   // Mapping de propiedades de la tabla perfiles
@@ -42,7 +42,6 @@ class ReservaSalas {
 }
 console.log("Conecciton done");
 class Salas {
-  // Mapping de propiedades de la tabla perfiles
   constructor(id = null, created_at = null, nombre = null, aforo = null, sala_descripcion = null, imagen = null) {
     this.id = id;
     this.created_at = created_at;
@@ -80,8 +79,8 @@ class Salas {
   static async addSala(dataSala) {
     const { data, error } = await supabase.from("salas").insert({
       nombre: dataSala.nombre,
+      sala_descripcion: dataSala.descripcion,
       aforo: dataSala.aforo,
-      sala_descripcion: dataSala.sala_descripcion,
       imagen: dataSala.imagen
     });
     if (error) {
@@ -105,7 +104,7 @@ class Salas {
   }
   static async estado(SalaId) {
     const { data, error } = await supabase.from("reserva_sala").select("estado").eq("id", `${SalaId}`);
-    if (data && data.length > 0 && data[0].estado == "Ocupada") {
+    if (data && data.length > 0 && data[0].estado == "Reservada") {
       swal({ title: "No disponible", icon: "warning" });
     } else {
       swal({ title: "Confirmado", icon: "success" });

@@ -1,12 +1,12 @@
-import { L as Libros } from "./claseLibros-c43a2a6c.js";
-import "./main-0bcf348b.js";
+import { L as Libros } from "./claseLibros-97d4dedf.js";
+import "./main-0963e69a.js";
 const editLibro = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-md-4">
       <div class="card">
         <div class="card-body"><form id="form-id">
-        <h2 class="mb-3">Nuevo libro</h2>
+        <h2 class="mb-3">Editar libro</h2>
     <div class="m-3">
       <label class="form-label">Titulo:</label>
       <input type="text" class="form-control" id="titulo-id">    
@@ -29,7 +29,7 @@ const editLibro = {
       <input type="text" class="form-control" id="imagen-id" >
     </div>
     
-    <button type="submit" class="btn btn-primary m-3">Añadir</button>
+    <button type="submit" class="btn btn-success m-3">Añadir</button>
   </form></div></div></div></div></div>`,
   async script() {
     const main = document.querySelector("main");

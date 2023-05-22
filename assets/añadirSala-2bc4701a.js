@@ -1,7 +1,7 @@
-import "./claseLibros-c43a2a6c.js";
-import { S as Salas } from "./vistaSalas-a7ecf0db.js";
-import "./main-0bcf348b.js";
-const editSala = {
+import "./claseLibros-97d4dedf.js";
+import { S as Salas } from "./vistaSalas-1943f211.js";
+import "./main-0963e69a.js";
+const a_adirSala = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-md-4">
@@ -26,14 +26,12 @@ const editSala = {
       <input type="text" class="form-control" id="imagen-id" >
     </div>
     
-    <button type="submit" class="btn btn-primary m-3">Editar</button>
+    <button type="submit" class="btn btn-success m-3">Añadir</button>
   </form></div></div></div></div></div>`,
   async script() {
     const main = document.querySelector("main");
     main.style.backgroundColor = "#77B7E1";
     main.style.height = "1000px";
-    const obtenerId = document.querySelector("#guardar-id");
-    console.log("sala value id: ", obtenerId.value);
     const form = document.querySelector("#form-id");
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -46,14 +44,13 @@ const editSala = {
         nombre: nombre.value,
         aforo: aforo.value,
         descripcion: descripcion.value,
-        imagen: imagen.value,
-        id: obtenerId.value
+        imagen: imagen.value
       };
-      await Salas.updateSala(dataSala);
+      await Salas.addSala(dataSala);
       window.location = "#/adminSalas";
     });
   }
 };
 export {
-  editSala as default
+  a_adirSala as default
 };

@@ -1,4 +1,4 @@
-import { s as supabase } from "./main-0bcf348b.js";
+import { s as supabase } from "./main-0963e69a.js";
 console.log("Conecciton done");
 class ReservaLibros {
   // Mapping de propiedades de la tabla perfiles
@@ -80,7 +80,6 @@ class ReservaLibros {
 }
 console.log("Conecciton done");
 class Libros {
-  // Mapping de propiedades de la tabla perfiles
   constructor(id = null, created_at = null, titulo = null, autor = null, isbn = null, fecha_publicacion = null, imagen = null, descripcion = null) {
     this.id = id;
     this.created_at = created_at;
