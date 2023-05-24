@@ -1,5 +1,5 @@
-import { R as ReservaLibros } from "./claseLibros-f015239d.js";
-import "./main-ea9e3bc0.js";
+import { R as ReservaLibros } from "./claseLibros-62bf46f5.js";
+import "./main-d86f3980.js";
 const librosPendientes = {
   template: `
     <h1>Lista de Usuarios</h1>
@@ -59,19 +59,9 @@ const librosPendientes = {
       });
       const userAmon = usuarioItem.querySelector(`#amonestar`);
       userAmon.addEventListener("click", async (e) => {
-        const res = userEliminar.getAttribute("data-id-res");
-        const user = userEliminar.getAttribute("data-id-user");
-        swal("Desea confirmar la devolución?", {
-          buttons: ["Cancelar", "Confirmar"]
-        }).then(async (value) => {
-          if (value) {
-            swal({ title: "Amonestado", icon: "success" });
-            await ReservaLibros.confirmarDev(user, res);
-            window.location = "#/librospendientes";
-          } else {
-            swal({ title: "Cancelado", icon: "warning" });
-          }
-        });
+        userEliminar.getAttribute("data-id-res");
+        userEliminar.getAttribute("data-id-user");
+        swal({ title: "Futura Mejora", text: "Esta opción estará disponible en la próxima actualización", icon: "success" });
       });
       insTabla.appendChild(usuarioItem);
     });

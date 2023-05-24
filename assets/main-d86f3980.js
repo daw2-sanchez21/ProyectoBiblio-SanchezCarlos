@@ -11308,16 +11308,9 @@ class Usuarios {
     if (error) {
       throw new Error(error.message);
     }
-    return new Usuarios(
-      usuario.id,
-      usuario.created_at,
-      usuario.nombre,
-      usuario.apellido,
-      usuario.nick,
-      usuario.email,
-      usuario.password,
-      usuario.rol
-    );
+    return usuario.map(({ id: id2, created_at, nombre, apellido, nick, email, rol }) => {
+      return new Usuarios(id2, created_at, nombre, apellido, nick, email, rol);
+    });
   }
   //Obtener usuario por email y luego extraer el rol
   static async getByUserRol(email) {
@@ -11356,7 +11349,8 @@ class Usuarios {
     const { data: usuario, error } = await supabase.from("usuarios").update({
       nombre: `${dataEdit.nombre}`,
       apellido: `${dataEdit.apellido}`,
-      nick: `${dataEdit.nick}`
+      nick: `${dataEdit.nick}`,
+      rol: `${dataEdit.rol}`
     }).match({ id: `${dataEdit.id}` });
     if (error) {
       throw new Error(error.message);
@@ -11385,7 +11379,7 @@ const header = {
     nav.innerHTML = ``;
     nav.innerHTML = `
             <li class="nav-item">
-            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">Log-In</a></button>
+            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">Iniciar sesión</a></button>
             </li>
          `;
     const estado = await User.getUser();
@@ -11411,7 +11405,7 @@ const header = {
               <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reservas</span></a>
             </li>
             <li class="nav-item">
-            <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Logout</a></button>
+            <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Cerrar sesión</a></button>
             </li>
             
             `;
@@ -11440,7 +11434,7 @@ const header = {
         <a class="nav-link" href="#/adminUser"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Users</span></a>
         </li>
         <li class="nav-item ms-4">
-          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Cerrar sesión</a></button>
         </li>
         
         `;
@@ -11474,7 +11468,7 @@ const header = {
             <a class="nav-link" href="#/librospendientes"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Supervisor</span></a>
           </li>
           <li class="nav-item">
-          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Cerrar sesión</a></button>
           </li>
           
           `;
@@ -11485,7 +11479,7 @@ const header = {
               <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inicio</span></a>
             </li>
             <li class="nav-item">
-            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">LogIn</a></button>
+            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">Iniciar sesión</a></button>
             </li>
          `;
     }
@@ -11508,23 +11502,23 @@ const footer = {
 };
 const enrutador = {
   rutas: {
-    login: __vitePreload(() => import("./login-382b9612.js"), true ? [] : void 0, import.meta.url),
-    home: __vitePreload(() => import("./home-233f035b.js"), true ? [] : void 0, import.meta.url),
-    registro: __vitePreload(() => import("./registro-e840145d.js"), true ? [] : void 0, import.meta.url),
-    libros: __vitePreload(() => import("./libros-8879fe9a.js"), true ? ["./libros-8879fe9a.js","./claseLibros-f015239d.js"] : void 0, import.meta.url),
-    salas: __vitePreload(() => import("./salas-8bf5784e.js"), true ? ["./salas-8bf5784e.js","./vistaSalas-8f7ccf5b.js"] : void 0, import.meta.url),
-    reservas: __vitePreload(() => import("./reservas-ddcb9bbb.js"), true ? ["./reservas-ddcb9bbb.js","./claseLibros-f015239d.js","./vistaSalas-8f7ccf5b.js"] : void 0, import.meta.url),
-    admin: __vitePreload(() => import("./adminLibros-afbaf552.js"), true ? ["./adminLibros-afbaf552.js","./claseLibros-f015239d.js"] : void 0, import.meta.url),
-    adminSalas: __vitePreload(() => import("./adminSalas-20a0508f.js"), true ? ["./adminSalas-20a0508f.js","./vistaSalas-8f7ccf5b.js"] : void 0, import.meta.url),
-    adminUser: __vitePreload(() => import("./adminUser-f55a4c56.js"), true ? ["./adminUser-f55a4c56.js","./claseLibros-f015239d.js"] : void 0, import.meta.url),
-    add: __vitePreload(() => import("./añadirLibro-89c66b54.js"), true ? ["./añadirLibro-89c66b54.js","./claseLibros-f015239d.js"] : void 0, import.meta.url),
-    addSala: __vitePreload(() => import("./añadirSala-5ce724fe.js"), true ? ["./añadirSala-5ce724fe.js","./claseLibros-f015239d.js","./vistaSalas-8f7ccf5b.js"] : void 0, import.meta.url),
-    edit: __vitePreload(() => import("./editLibro-5ab73ce3.js"), true ? ["./editLibro-5ab73ce3.js","./claseLibros-f015239d.js"] : void 0, import.meta.url),
-    editSala: __vitePreload(() => import("./editSala-36e27d67.js"), true ? ["./editSala-36e27d67.js","./claseLibros-f015239d.js","./vistaSalas-8f7ccf5b.js"] : void 0, import.meta.url),
-    editUser: __vitePreload(() => import("./editUsuario-dc843df4.js"), true ? ["./editUsuario-dc843df4.js","./claseLibros-f015239d.js"] : void 0, import.meta.url),
-    descripcion: __vitePreload(() => import("./descripcionLibros-53a0bf36.js"), true ? ["./descripcionLibros-53a0bf36.js","./claseLibros-f015239d.js"] : void 0, import.meta.url),
-    librospendientes: __vitePreload(() => import("./librosPendientes-133d24d3.js"), true ? ["./librosPendientes-133d24d3.js","./claseLibros-f015239d.js"] : void 0, import.meta.url),
-    logout: __vitePreload(() => import("./logout-e77fa7ab.js"), true ? [] : void 0, import.meta.url)
+    login: __vitePreload(() => import("./login-fe1b734a.js"), true ? [] : void 0, import.meta.url),
+    home: __vitePreload(() => import("./home-6f24d53b.js"), true ? [] : void 0, import.meta.url),
+    registro: __vitePreload(() => import("./registro-63580ef9.js"), true ? [] : void 0, import.meta.url),
+    libros: __vitePreload(() => import("./libros-236f9d5c.js"), true ? ["./libros-236f9d5c.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
+    salas: __vitePreload(() => import("./salas-087cf2d5.js"), true ? ["./salas-087cf2d5.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
+    reservas: __vitePreload(() => import("./reservas-c23cf699.js"), true ? ["./reservas-c23cf699.js","./claseLibros-62bf46f5.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
+    admin: __vitePreload(() => import("./adminLibros-4b383896.js"), true ? ["./adminLibros-4b383896.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
+    adminSalas: __vitePreload(() => import("./adminSalas-818d5871.js"), true ? ["./adminSalas-818d5871.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
+    adminUser: __vitePreload(() => import("./adminUser-b36f2f8e.js"), true ? ["./adminUser-b36f2f8e.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
+    add: __vitePreload(() => import("./añadirLibro-06fb0588.js"), true ? ["./añadirLibro-06fb0588.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
+    addSala: __vitePreload(() => import("./añadirSala-7b5eee4b.js"), true ? ["./añadirSala-7b5eee4b.js","./claseLibros-62bf46f5.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
+    edit: __vitePreload(() => import("./editLibro-084faf47.js"), true ? ["./editLibro-084faf47.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
+    editSala: __vitePreload(() => import("./editSala-56bd3d43.js"), true ? ["./editSala-56bd3d43.js","./claseLibros-62bf46f5.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
+    editUser: __vitePreload(() => import("./editUsuario-d0735d28.js"), true ? ["./editUsuario-d0735d28.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
+    descripcion: __vitePreload(() => import("./descripcionLibros-2383bc25.js"), true ? ["./descripcionLibros-2383bc25.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
+    librospendientes: __vitePreload(() => import("./librosPendientes-78fb7651.js"), true ? ["./librosPendientes-78fb7651.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
+    logout: __vitePreload(() => import("./logout-c65ed09f.js"), true ? [] : void 0, import.meta.url)
   },
   async router() {
     const pathCompleto = window.location.hash;

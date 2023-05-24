@@ -1,4 +1,4 @@
-import { U as User, h as header } from "./main-ea9e3bc0.js";
+import { U as User, h as header } from "./main-d86f3980.js";
 const logout = {
   template: ``,
   async script() {

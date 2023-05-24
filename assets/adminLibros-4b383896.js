@@ -1,5 +1,5 @@
-import { L as Libros } from "./claseLibros-f015239d.js";
-import "./main-ea9e3bc0.js";
+import { L as Libros } from "./claseLibros-62bf46f5.js";
+import "./main-d86f3980.js";
 const adminLibros = {
   template: `
     <h1>Lista de Usuarios</h1>
@@ -8,7 +8,7 @@ const adminLibros = {
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
         <button class="btn" style="border-color:#77B7E1;" type="submit">Search</button>
       </form>
-      <a href="#/add" class="btn btn-success ms-1" color:white" id="add-"> + Add</a>
+      <a href="#/add" class="btn btn-success ms-1" color:white" id="add-"> + Añadir</a>
     </div>
     <div class="container" id="libro-list"></div>
   `,

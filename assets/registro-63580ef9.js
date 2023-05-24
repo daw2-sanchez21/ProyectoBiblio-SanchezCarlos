@@ -1,4 +1,4 @@
-import { U as User, a as Usuarios } from "./main-ea9e3bc0.js";
+import { U as User, a as Usuarios } from "./main-d86f3980.js";
 const registro = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
@@ -8,12 +8,12 @@ const registro = {
         <h2 class="mb-3">Registro</h2>
     <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Nombre:</label>
-      <input type="text" class="form-control" id="nombre-id" pattern="[A-Za-z]+"  required>
+      <input type="text" class="form-control" id="nombre-id" pattern="[A-Za-z ]+"  required>
       
     </div>
     <div class="m-3"
       <label for="exampleInputEmail1" class="form-label">Apellido:</label>
-      <input type="text" class="form-control" id="apellido-id" pattern="[A-Za-z]+"  required>
+      <input type="text" class="form-control" id="apellido-id" pattern="[A-Za-z ]+"  required>
       <div class="invalid-feedback">El apellido no es correcto</div>
     </div>
     <div class="m-3"
@@ -33,7 +33,7 @@ const registro = {
                 La contraseña debe contener 8 letras o números.
             </div>
     </div>
-    <button type="submit" class="btn btn-primary m-3">Sign Up</button>
+    <button type="submit" class="btn m-3" style="border-color:#77B7E1; font-family: 'Open Sans', sans-serif;">Registrar</button>
   </form></div></div></div></div></div>`,
   async script() {
     console.log("connectio done");

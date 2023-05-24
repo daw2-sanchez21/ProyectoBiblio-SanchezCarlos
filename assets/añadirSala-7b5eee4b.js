@@ -1,6 +1,6 @@
-import "./claseLibros-f015239d.js";
-import { S as Salas } from "./vistaSalas-8f7ccf5b.js";
-import "./main-ea9e3bc0.js";
+import "./claseLibros-62bf46f5.js";
+import { S as Salas } from "./vistaSalas-3488af29.js";
+import "./main-d86f3980.js";
 const a_adirSala = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
@@ -9,8 +9,8 @@ const a_adirSala = {
         <div class="card-body"><form id="form-id">
         <h2 class="mb-3">Nueva Sala</h2>
     <div class="m-3">
-      <label class="form-label">Titulo:</label>
-      <input type="text" class="form-control" id="nombre-id">    
+      <label class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="nombre-id" pattern="[A-Za-z0-9 ]+" require>    
     </div>
     <div class="m-3">
       <label  class="form-label">Aforo:</label>
@@ -19,11 +19,11 @@ const a_adirSala = {
     </div>
     <div class="m-3"
       <label class="form-label">Descripción:</label>
-      <input type="text" class="form-control" id="descripcion-id">
+      <input type="text" class="form-control" id="descripcion-id" pattern="[A-Za-z0-9 ]+" require>
     </div>
     <div class="m-3">
       <label class="form-label">Imagen:</label>
-      <input type="text" class="form-control" id="imagen-id" >
+      <input type="text" class="form-control" id="imagen-id" pattern="https?://.+" require>
     </div>
     
     <button type="submit" class="btn btn-success m-3">Añadir</button>

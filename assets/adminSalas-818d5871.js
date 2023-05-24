@@ -1,5 +1,5 @@
-import { S as Salas } from "./vistaSalas-8f7ccf5b.js";
-import "./main-ea9e3bc0.js";
+import { S as Salas } from "./vistaSalas-3488af29.js";
+import "./main-d86f3980.js";
 const adminSalas = {
   template: `
     <h1>Lista de salas</h1>
@@ -8,7 +8,7 @@ const adminSalas = {
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchSala">
         <button class="btn" style="border-color:#77B7E1;" type="submit">Search</button>
       </form>
-      <a href="#/addSala" class="btn btn-success ms-3" color:white" id="add-"> + Add</a>
+      <a href="#/addSala" class="btn btn-success ms-3" color:white" id="add-"> + Añadir</a>
     </div>
     <div class="container" id="sala-list"></div>
   `,
