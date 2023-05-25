@@ -1,5 +1,5 @@
-import { L as Libros } from "./claseLibros-c77c76e3.js";
-import "./main-5054c098.js";
+import { L as Libros } from "./claseLibros-075f01ea.js";
+import "./main-ee19579a.js";
 const a_adirLibro = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">

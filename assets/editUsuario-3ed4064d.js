@@ -1,5 +1,5 @@
-import "./claseLibros-c77c76e3.js";
-import { a as Usuarios } from "./main-5054c098.js";
+import "./claseLibros-075f01ea.js";
+import { a as Usuarios } from "./main-ee19579a.js";
 const editUsuario = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">
