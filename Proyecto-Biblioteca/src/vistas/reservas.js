@@ -22,7 +22,7 @@ export default {
     <div class="row d-flex align-items-center">
       <div class="col-12 border  border-dark border-2 m-5 p-2 mx-auto align-self-center text-center rounded" style="background-color: #FFFFFF;" id="amonestaciones-id">
         <h2 class="border-bottom">Amonestaciones</h2>
-        <p id="p-amt">No hay amonestaciónes</p>
+        
       </div>
     </div>
   </div>
@@ -36,9 +36,11 @@ export default {
     const main= document.querySelector('main')
     //main.style.backgroundImage('https://cdn.pixabay.com/photo/2020/10/09/20/09/library-5641389_640.jpg')
     main.style.backgroundColor='#77B7E1'
-    main.style.backgroundImage='url("img/lb3.jpg")'
+    //main.style.backgroundImage='url("img/lb3.jpg")'
     main.style.height='auto'
+    main.style.minHeight = '1000px'
     const res= document.querySelector('#res-libros')
+    res.style.minHeight = '300px'
     //Faltaria obtener el id del usuario y pasarlo como parametro
     const obtID = document.querySelector('#guardarUser-id')
     console.log("Este es el id busc", obtID.value)
@@ -126,29 +128,59 @@ export default {
       res.appendChild(libroItem)
   }
   const reSala= document.querySelector('#res-salas')
+  reSala.style.minHeight = '300px'
     //Faltaria obtener el id del usuario y pasarlo como parametro
     const reservaSalas = await ReservaSalas.getReservasByUserId(obtID.value)
     for (const reserva of reservaSalas) {
           const imgSala = await Salas.getByID(reserva.sala_id) 
+         
           const salaItem = document.createElement('div')
           salaItem.innerHTML = `
           <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="${imgSala[0].imagen}" style="height:100%; width:100%;" class="img-fluid rounded-start" alt="...">
+              <img src="${imgSala[0].imagen}" style="height:100%; width:100%;" class="img-fluid rounded-start" alt="Imagen Libro">
             </div>
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">Número: #${reserva.id}</h5>
-                <p class="card-text">Fecha Reserva: ${reserva.fecha_reserva}</br> Fecha entrega:  ${reserva.fecha_fin} </br> Estado: ${reserva.estado}</p>
+                <p class="card-text">Fecha Reserva: ${reserva.fecha_reserva} </br> Estado: ${reserva.estado}</p>
+                <a href="#" class="btn btn-success" color:white" id="liberar-${reserva.sala_id}">Liberar</a>
               </div>
             </div>
-          </div>
-        </div>` 
-      reSala.appendChild(salaItem)
+            </div>
+          </div>` 
+
+          const salaReserva = salaItem.querySelector(`#liberar-${reserva.sala_id}`)
+          salaReserva.addEventListener('click', async(e)=>{
+            console.log("Boton reservar")
+            const salaReservaId = e.target.id
+            const salaId = salaReservaId.replace("liberar-", "")
+            console.log("Este es el id de la sala: ", salaId)
+            //Conflicto pq si no tiene estado da error
+            //const confirmacion = window.confirm("¿Estás seguro de que quieres reservar este libro?");
+            swal("Desea liberar la sala?",{
+                buttons:["Cancelar", "Confirmar"]
+            })
+            .then(async(value) => {
+              if (value) {
+                //swal({title:'Confirmado', icon:'success'})
+                await ReservaSalas.liberar(salaId)
+                window.location = '#/reservas'
+              } else {
+                swal({title:'Cancelado', icon:'warning'})
+                
+              }
+            })
+            
+           })
+          reSala.appendChild(salaItem)
+          
+          
   }
 
-  //const amnt = document.querySelector('#amonestaciones-id')
+  const amnt = document.querySelector('#amonestaciones-id')
+  amnt.style.minHeight = '200px'
   //const emailUser = await User.getUser()
   //console.log(emailUser.email)
   //const userAmnt = await Usuarios.getUserByEmail(emailUser.email)

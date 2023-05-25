@@ -8,7 +8,7 @@ export default  {
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-        <h2 class="mb-3" style="font-family: 'Open Sans', sans-serif;">Login</h2>
+        <h2 class="mb-3" style="font-family: 'Open Sans', sans-serif;">Inicio de sesión</h2>
   <form id="form-id">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label"><span style="font-family: 'Open Sans', sans-serif;">Email:</span></label>

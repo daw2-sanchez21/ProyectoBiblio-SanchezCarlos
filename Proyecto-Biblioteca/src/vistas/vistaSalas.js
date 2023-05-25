@@ -6,7 +6,6 @@ import { ReservaSalas } from './claseReservaSala'
 
 console.log('Conecciton done')
 export class Salas {
-  // Mapping de propiedades de la tabla perfiles
   constructor (id=null, created_at=null, nombre=null, aforo = null, sala_descripcion = null, imagen=null) {
     this.id = id
     this.created_at = created_at
@@ -57,8 +56,8 @@ export class Salas {
     .from('salas')
     .insert({
       nombre: dataSala.nombre,
+      sala_descripcion: dataSala.descripcion,
       aforo: dataSala.aforo,
-      sala_descripcion: dataSala.sala_descripcion,
       imagen: dataSala.imagen
     })
     if(error){
@@ -84,19 +83,26 @@ export class Salas {
       swal({ title: 'Actualizado', icon: 'success' })
     }
   }
-  static async estado(SalaId){
+  static async estado(salaId){
     const { data, error } = await supabase 
           .from('reserva_sala')
           .select('estado')
-          .eq('id', `${SalaId}`)
-          if(data && data.length > 0 && data[0].estado=="Ocupada"){
+          .eq('id', `${salaId}`)
+          if(data && data.length > 0 && data[0].estado=="Reservado"){
             //Mejorar alert para cuando el libro no esté disponible
             swal({title:'No disponible', icon:'warning'})
           
           }else{
             swal({title:'Confirmado', icon:'success'})
             const userId = document.querySelector('#guardarUser-id')
-            await ReservaSalas.reservar(SalaId, userId.value)
+            const fecha_actual = new Date().toISOString().substring(0, 10)
+            const dataSala = {
+              id: userId.value,
+              fecha:fecha_actual,
+              sala: salaId
+            }
+            console.log("problema?", dataSala.id, dataSala.fecha, dataSala.sala)
+            await ReservaSalas.update(dataSala)
             
           }
   }

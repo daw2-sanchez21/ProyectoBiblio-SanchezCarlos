@@ -13,6 +13,7 @@ export const enrutador = {
     addSala: import('../vistas/añadirSala.js'),
     edit: import ('../vistas/editLibro.js'),
     editSala: import('../vistas/editSala.js'),
+    editUser: import('../vistas/editUsuario.js'),
     descripcion: import ('../vistas/descripcionLibros.js'),
     librospendientes: import('../vistas/librosPendientes.js'),
     logout: import('../vistas/logout.js')

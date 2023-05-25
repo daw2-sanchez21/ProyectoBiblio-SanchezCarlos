@@ -10,7 +10,7 @@ export default {
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
         <button class="btn" style="border-color:#77B7E1;" type="submit">Search</button>
       </form>
-      <a href="#/add" class="btn btn-success ms-1" color:white" id="add-"> + Add</a>
+      <a href="#/add" class="btn btn-success ms-1" color:white" id="add-"> + Añadir</a>
     </div>
     <div class="container" id="libro-list"></div>
   `,

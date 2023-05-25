@@ -69,7 +69,7 @@ export default {
       //if (confirmacion) {
       //await Libros.estado(libroId)
       //}
-      
+    })
       const usuarioEdit = usuarioItem.querySelector(`#editar-${usuario.id}`)
       usuarioEdit.addEventListener('click', async(e)=>{
         const usuarioEditId = e.target.id
@@ -80,12 +80,12 @@ export default {
         window.location = '#/editUser'
 
       })
+      insTabla.appendChild(usuarioItem)
      })
     //
-    insTabla.appendChild(usuarioItem)
+   
 
     
 
-  })
   }
 }

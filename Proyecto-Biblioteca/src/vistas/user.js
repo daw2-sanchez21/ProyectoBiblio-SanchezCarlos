@@ -13,10 +13,9 @@ export class User {
   }
   // login
   static async login (userData) {
-    // USER LOGIN
       const { data, error } = await supabase.auth.signInWithPassword(userData)
       if (error) {
-        swal({title:'Error', text:'Debe confirmar su email, revisa la bandeja de entrada de tu correo' , icon:'warning'})
+        swal({title:'Error', text:'Credenciales incorrectas o falta de confirmación de email.' , icon:'warning'})
       }
       return new User(data.user.id, data.user.email)
     }

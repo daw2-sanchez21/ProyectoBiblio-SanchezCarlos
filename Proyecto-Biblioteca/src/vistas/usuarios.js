@@ -64,9 +64,11 @@ export class Usuarios {
     if (error) {
       throw new Error(error.message)
     }
-    return new Usuarios (usuario.id, usuario.created_at, usuario.nombre, 
-      usuario.apellido, usuario.nick, usuario.email, usuario.password, usuario.rol )
-  }
+    return usuario.map(({ id, created_at, nombre, apellido, nick, email, rol}) => {
+      return new Usuarios(id, created_at, nombre, apellido, nick, email, rol )
+  })
+}
+  
   //Obtener usuario por email y luego extraer el rol
   static async getByUserRol(email) {
     const { data: usuario , error } = await supabase
@@ -104,5 +106,21 @@ export class Usuarios {
     swal({title:'Usuario Bloqueado', icon:'success'})
     return true
     
+  }
+  static async editar(dataEdit) {
+    const { data: usuario , error } = await supabase
+      .from('usuarios')
+      .update({ nombre: `${dataEdit.nombre}`,
+      apellido: `${dataEdit.apellido}`,
+      nick:`${dataEdit.nick}`,
+      rol:`${dataEdit.rol}`
+      })
+      .match({ id: `${dataEdit.id}`});
+    if (error) {
+      throw new Error(error.message)
+    }
+    swal({title:'Usuario Editado', icon:'success'})
+    return true
+
   }
 }

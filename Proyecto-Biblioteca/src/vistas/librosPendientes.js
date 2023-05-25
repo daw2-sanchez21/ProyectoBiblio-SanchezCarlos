@@ -75,20 +75,20 @@ export default {
     const res = userEliminar.getAttribute("data-id-res")
     const user = userEliminar.getAttribute("data-id-user")
     
-      swal("Desea confirmar la devolución?",{
-          buttons:["Cancelar", "Confirmar"]
-      })
-      .then(async(value) => {
-        if (value) {
-          swal({title:'Amonestado', icon:'success'})
+    swal({title:'Futura Mejora',text:'Esta opción estará disponible en la próxima actualización', icon:'success'})//,{
+         // buttons:["Cancelar", "Confirmar"]
+      //})
+     // .then(async(value) => {
+       // if (value) {
+       //   swal({title:'Amonestado', icon:'success'})
           
-          await ReservaLibros.confirmarDev(user, res)
-          window.location = '#/librospendientes'
-        } else {
-          swal({title:'Cancelado', icon:'warning'})
+       //   await ReservaLibros.confirmarDev(user, res)
+        //  window.location = '#/librospendientes'
+      //  } else {
+      //    swal({title:'Cancelado', icon:'warning'})
           
-        }
-      }) 
+       /// }
+      //}) 
       
      })
     //

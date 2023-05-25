@@ -35,7 +35,7 @@ static async reservar(sala, usuario) {
     { usuario_id: `${usuario}`, sala_id: `${sala}`, estado: "Reservado" },
   ])
     if(error){
-      swal({title:'Error',text:'Ya tienes una reserva en curso', icon:'warning'})
+      swal({title:'Error',text:'Ya tienes una reserva en curso o no está disponible', icon:'warning'})
     }else{
       swal({title:'Reservado',text:`Has reservado la sala ${sala}`, icon:'success'})
       //alert(`RESERVADO! Libro: ${libro} User: ${usuario}`)
@@ -55,5 +55,38 @@ static async getReservasByUserId(id) {
         return new ReservaSalas( id, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado)
     })
 }
-
+static async update(dataSala) {
+  const { data: reservas , error } = await supabase
+    .from('reserva_sala')
+    .update({
+      usuario_id: `${dataSala.id}`, 
+      fecha_reserva: `${dataSala.fecha}`,
+      estado: "Reservado" 
+      })
+      .match({ sala_id: `${dataSala.sala}` })
+      if(error){
+        swal({title:'Error',text:'Ya tienes una reserva en curso o no está disponible', icon:'warning'})
+      }else{
+        swal({title:'Reservado',text:`Has reservado la sala ${dataSala.sala}`, icon:'success'})
+        //alert(`RESERVADO! Libro: ${libro} User: ${usuario}`)
+      return reservas.map(({  id, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado}) => {
+      return new ReservaSalas( id, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado)
+      })
+      }
+}
+static async liberar(dataSala) {
+  const { data: reservas , error } = await supabase
+    .from('reserva_sala')
+    .update({
+      usuario_id:null,
+      estado: "Disponible" 
+      })
+    .match({ sala_id: `${dataSala}` })
+    if(error){
+      swal({title:'Error',text:'No se ha podido liberar', icon:'warning'})
+    }else{
+      swal({title:'Sala liberada',text:`Has liberado la sala: ${dataSala}`, icon:'success'})
+    
+    }
+}
 }

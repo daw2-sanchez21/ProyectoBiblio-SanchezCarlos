@@ -8,8 +8,8 @@ export default {
         <div class="card-body"><form id="form-id">
         <h2 class="mb-3">Nueva Sala</h2>
     <div class="m-3">
-      <label class="form-label">Titulo:</label>
-      <input type="text" class="form-control" id="nombre-id">    
+      <label class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="nombre-id" pattern="[A-Za-z0-9 ]+" require>    
     </div>
     <div class="m-3">
       <label  class="form-label">Aforo:</label>
@@ -18,11 +18,11 @@ export default {
     </div>
     <div class="m-3"
       <label class="form-label">Descripción:</label>
-      <input type="text" class="form-control" id="descripcion-id">
+      <input type="text" class="form-control" id="descripcion-id" pattern="[A-Za-z0-9 ]+" require>
     </div>
     <div class="m-3">
       <label class="form-label">Imagen:</label>
-      <input type="text" class="form-control" id="imagen-id" >
+      <input type="text" class="form-control" id="imagen-id" pattern="https?://.+" require>
     </div>
     
     <button type="submit" class="btn btn-success m-3">Añadir</button>

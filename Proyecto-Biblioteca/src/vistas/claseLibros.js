@@ -5,7 +5,6 @@ import { supabase } from './supabase'
 import { ReservaLibros } from './claseReservaLibros';
 console.log('Conecciton done')
 export class Libros {
-  // Mapping de propiedades de la tabla perfiles
   constructor (id=null, created_at=null, titulo=null, autor = null, isbn = null, fecha_publicacion=null, imagen=null, descripcion=null) {
     this.id = id
     this.created_at = created_at

@@ -20,7 +20,7 @@ export const header = {
     nav.innerHTML=``
     nav.innerHTML=`
             <li class="nav-item">
-            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">Log-In</a></button>
+            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">Iniciar sesión</a></button>
             </li>
          `
     //Hacer lógica más eficiente y probar en incognito pq guarda los usuarios
@@ -48,7 +48,7 @@ export const header = {
               <a class="nav-link" href="#/reservas"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Reservas</span></a>
             </li>
             <li class="nav-item">
-            <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Logout</a></button>
+            <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Cerrar sesión</a></button>
             </li>
             
             `
@@ -77,7 +77,7 @@ export const header = {
         <a class="nav-link" href="#/adminUser"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Admin Users</span></a>
         </li>
         <li class="nav-item ms-4">
-          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Cerrar sesión</a></button>
         </li>
         
         `
@@ -111,7 +111,7 @@ export const header = {
             <a class="nav-link" href="#/librospendientes"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Supervisor</span></a>
           </li>
           <li class="nav-item">
-          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">LogOut</a></button>
+          <button class="btn btn-danger ms-3"><a href="#/logout" style="color:#fff; text-decoration:none;">Cerrar sesión</a></button>
           </li>
           
           `
@@ -122,7 +122,7 @@ export const header = {
               <a class="nav-link" href="#/home"><span style="color:#000000; font-size:18px; font-family: 'Open Sans', sans-serif;">Inicio</span></a>
             </li>
             <li class="nav-item">
-            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">LogIn</a></button>
+            <button class="btn btn-success"><a href="#/login" style="color:#fff; text-decoration:none;">Iniciar sesión</a></button>
             </li>
          `
     }
