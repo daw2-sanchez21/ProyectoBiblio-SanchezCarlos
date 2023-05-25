@@ -11502,23 +11502,23 @@ const footer = {
 };
 const enrutador = {
   rutas: {
-    login: __vitePreload(() => import("./login-fe1b734a.js"), true ? [] : void 0, import.meta.url),
-    home: __vitePreload(() => import("./home-6f24d53b.js"), true ? [] : void 0, import.meta.url),
-    registro: __vitePreload(() => import("./registro-63580ef9.js"), true ? [] : void 0, import.meta.url),
-    libros: __vitePreload(() => import("./libros-236f9d5c.js"), true ? ["./libros-236f9d5c.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
-    salas: __vitePreload(() => import("./salas-087cf2d5.js"), true ? ["./salas-087cf2d5.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
-    reservas: __vitePreload(() => import("./reservas-c23cf699.js"), true ? ["./reservas-c23cf699.js","./claseLibros-62bf46f5.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
-    admin: __vitePreload(() => import("./adminLibros-4b383896.js"), true ? ["./adminLibros-4b383896.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
-    adminSalas: __vitePreload(() => import("./adminSalas-818d5871.js"), true ? ["./adminSalas-818d5871.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
-    adminUser: __vitePreload(() => import("./adminUser-b36f2f8e.js"), true ? ["./adminUser-b36f2f8e.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
-    add: __vitePreload(() => import("./añadirLibro-06fb0588.js"), true ? ["./añadirLibro-06fb0588.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
-    addSala: __vitePreload(() => import("./añadirSala-7b5eee4b.js"), true ? ["./añadirSala-7b5eee4b.js","./claseLibros-62bf46f5.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
-    edit: __vitePreload(() => import("./editLibro-084faf47.js"), true ? ["./editLibro-084faf47.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
-    editSala: __vitePreload(() => import("./editSala-56bd3d43.js"), true ? ["./editSala-56bd3d43.js","./claseLibros-62bf46f5.js","./vistaSalas-3488af29.js"] : void 0, import.meta.url),
-    editUser: __vitePreload(() => import("./editUsuario-d0735d28.js"), true ? ["./editUsuario-d0735d28.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
-    descripcion: __vitePreload(() => import("./descripcionLibros-2383bc25.js"), true ? ["./descripcionLibros-2383bc25.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
-    librospendientes: __vitePreload(() => import("./librosPendientes-78fb7651.js"), true ? ["./librosPendientes-78fb7651.js","./claseLibros-62bf46f5.js"] : void 0, import.meta.url),
-    logout: __vitePreload(() => import("./logout-c65ed09f.js"), true ? [] : void 0, import.meta.url)
+    login: __vitePreload(() => import("./login-e471828c.js"), true ? [] : void 0, import.meta.url),
+    home: __vitePreload(() => import("./home-04312acc.js"), true ? [] : void 0, import.meta.url),
+    registro: __vitePreload(() => import("./registro-a211e334.js"), true ? [] : void 0, import.meta.url),
+    libros: __vitePreload(() => import("./libros-d68e479b.js"), true ? ["./libros-d68e479b.js","./claseLibros-c77c76e3.js"] : void 0, import.meta.url),
+    salas: __vitePreload(() => import("./salas-1ba9e590.js"), true ? ["./salas-1ba9e590.js","./vistaSalas-656ca006.js"] : void 0, import.meta.url),
+    reservas: __vitePreload(() => import("./reservas-6f1b096f.js"), true ? ["./reservas-6f1b096f.js","./claseLibros-c77c76e3.js","./vistaSalas-656ca006.js"] : void 0, import.meta.url),
+    admin: __vitePreload(() => import("./adminLibros-ec932cb1.js"), true ? ["./adminLibros-ec932cb1.js","./claseLibros-c77c76e3.js"] : void 0, import.meta.url),
+    adminSalas: __vitePreload(() => import("./adminSalas-8cfbb57e.js"), true ? ["./adminSalas-8cfbb57e.js","./vistaSalas-656ca006.js"] : void 0, import.meta.url),
+    adminUser: __vitePreload(() => import("./adminUser-7a653982.js"), true ? ["./adminUser-7a653982.js","./claseLibros-c77c76e3.js"] : void 0, import.meta.url),
+    add: __vitePreload(() => import("./añadirLibro-090199db.js"), true ? ["./añadirLibro-090199db.js","./claseLibros-c77c76e3.js"] : void 0, import.meta.url),
+    addSala: __vitePreload(() => import("./añadirSala-830ceee5.js"), true ? ["./añadirSala-830ceee5.js","./claseLibros-c77c76e3.js","./vistaSalas-656ca006.js"] : void 0, import.meta.url),
+    edit: __vitePreload(() => import("./editLibro-fc978565.js"), true ? ["./editLibro-fc978565.js","./claseLibros-c77c76e3.js"] : void 0, import.meta.url),
+    editSala: __vitePreload(() => import("./editSala-085fcbd5.js"), true ? ["./editSala-085fcbd5.js","./claseLibros-c77c76e3.js","./vistaSalas-656ca006.js"] : void 0, import.meta.url),
+    editUser: __vitePreload(() => import("./editUsuario-4875f017.js"), true ? ["./editUsuario-4875f017.js","./claseLibros-c77c76e3.js"] : void 0, import.meta.url),
+    descripcion: __vitePreload(() => import("./descripcionLibros-2483f235.js"), true ? ["./descripcionLibros-2483f235.js","./claseLibros-c77c76e3.js"] : void 0, import.meta.url),
+    librospendientes: __vitePreload(() => import("./librosPendientes-b37dd12e.js"), true ? ["./librosPendientes-b37dd12e.js","./claseLibros-c77c76e3.js"] : void 0, import.meta.url),
+    logout: __vitePreload(() => import("./logout-4df961e5.js"), true ? [] : void 0, import.meta.url)
   },
   async router() {
     const pathCompleto = window.location.hash;

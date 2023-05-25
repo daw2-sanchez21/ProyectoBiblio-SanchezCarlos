@@ -1,5 +1,5 @@
-import { L as Libros } from "./claseLibros-62bf46f5.js";
-import "./main-d86f3980.js";
+import { L as Libros } from "./claseLibros-c77c76e3.js";
+import "./main-5054c098.js";
 const editLibro = {
   template: `<div class="container h-100" style="background-color:#77B7E1">
   <div class="row justify-content-center align-items-center h-100">

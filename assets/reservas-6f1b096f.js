@@ -1,6 +1,6 @@
-import { R as ReservaLibros, L as Libros } from "./claseLibros-62bf46f5.js";
-import { R as ReservaSalas, S as Salas } from "./vistaSalas-3488af29.js";
-import "./main-d86f3980.js";
+import { R as ReservaLibros, L as Libros } from "./claseLibros-c77c76e3.js";
+import { R as ReservaSalas, S as Salas } from "./vistaSalas-656ca006.js";
+import "./main-5054c098.js";
 console.log("Conecciton done");
 const reservas = {
   template: `
@@ -123,11 +123,29 @@ const reservas = {
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">Número: #${reserva.id}</h5>
-                <p class="card-text">Fecha Reserva: ${reserva.fecha_reserva}</br> Fecha entrega:  ${reserva.fecha_fin} </br> Estado: ${reserva.estado}</p>
+                <p class="card-text">Fecha Reserva: ${reserva.fecha_reserva} </br> Estado: ${reserva.estado}</p>
+                <a href="#" class="btn btn-success" color:white" id="liberar-${reserva.sala_id}">Liberar</a>
               </div>
             </div>
-          </div>
-        </div>`;
+            </div>
+          </div>`;
+      const salaReserva = salaItem.querySelector(`#liberar-${reserva.sala_id}`);
+      salaReserva.addEventListener("click", async (e) => {
+        console.log("Boton reservar");
+        const salaReservaId = e.target.id;
+        const salaId = salaReservaId.replace("liberar-", "");
+        console.log("Este es el id de la sala: ", salaId);
+        swal("Desea liberar la sala?", {
+          buttons: ["Cancelar", "Confirmar"]
+        }).then(async (value) => {
+          if (value) {
+            await ReservaSalas.liberar(salaId);
+            window.location = "#/reservas";
+          } else {
+            swal({ title: "Cancelado", icon: "warning" });
+          }
+        });
+      });
       reSala.appendChild(salaItem);
     }
     const amnt = document.querySelector("#amonestaciones-id");

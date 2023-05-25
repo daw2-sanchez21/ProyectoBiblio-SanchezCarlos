@@ -1,4 +1,4 @@
-import { s as supabase } from "./main-d86f3980.js";
+import { s as supabase } from "./main-5054c098.js";
 console.log("Conecciton done");
 class ReservaSalas {
   // Mapping de propiedades de la tabla perfiles
@@ -25,7 +25,7 @@ class ReservaSalas {
       { usuario_id: `${usuario}`, sala_id: `${sala}`, estado: "Reservado" }
     ]);
     if (error) {
-      swal({ title: "Error", text: "Ya tienes una reserva en curso", icon: "warning" });
+      swal({ title: "Error", text: "Ya tienes una reserva en curso o no está disponible", icon: "warning" });
     } else {
       swal({ title: "Reservado", text: `Has reservado la sala ${sala}`, icon: "success" });
     }
@@ -38,6 +38,32 @@ class ReservaSalas {
     return reservas.map(({ id: id2, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado }) => {
       return new ReservaSalas(id2, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado);
     });
+  }
+  static async update(dataSala) {
+    const { data: reservas, error } = await supabase.from("reserva_sala").update({
+      usuario_id: `${dataSala.id}`,
+      fecha_reserva: `${dataSala.fecha}`,
+      estado: "Reservado"
+    }).match({ sala_id: `${dataSala.sala}` });
+    if (error) {
+      swal({ title: "Error", text: "Ya tienes una reserva en curso o no está disponible", icon: "warning" });
+    } else {
+      swal({ title: "Reservado", text: `Has reservado la sala ${dataSala.sala}`, icon: "success" });
+      return reservas.map(({ id, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado }) => {
+        return new ReservaSalas(id, created_at, usuario_id, sala_id, fecha_reserva, fecha_fin, estado);
+      });
+    }
+  }
+  static async liberar(dataSala) {
+    const { data: reservas, error } = await supabase.from("reserva_sala").update({
+      usuario_id: null,
+      estado: "Disponible"
+    }).match({ sala_id: `${dataSala}` });
+    if (error) {
+      swal({ title: "Error", text: "No se ha podido liberar", icon: "warning" });
+    } else {
+      swal({ title: "Sala liberada", text: `Has liberado la sala: ${dataSala}`, icon: "success" });
+    }
   }
 }
 console.log("Conecciton done");
@@ -102,14 +128,21 @@ class Salas {
       swal({ title: "Actualizado", icon: "success" });
     }
   }
-  static async estado(SalaId) {
-    const { data, error } = await supabase.from("reserva_sala").select("estado").eq("id", `${SalaId}`);
-    if (data && data.length > 0 && data[0].estado == "Reservada") {
+  static async estado(salaId) {
+    const { data, error } = await supabase.from("reserva_sala").select("estado").eq("id", `${salaId}`);
+    if (data && data.length > 0 && data[0].estado == "Reservado") {
       swal({ title: "No disponible", icon: "warning" });
     } else {
       swal({ title: "Confirmado", icon: "success" });
       const userId = document.querySelector("#guardarUser-id");
-      await ReservaSalas.reservar(SalaId, userId.value);
+      const fecha_actual = new Date().toISOString().substring(0, 10);
+      const dataSala = {
+        id: userId.value,
+        fecha: fecha_actual,
+        sala: salaId
+      };
+      console.log("problema?", dataSala.id, dataSala.fecha, dataSala.sala);
+      await ReservaSalas.update(dataSala);
     }
   }
   static async getByID(id) {
