@@ -1,6 +1,6 @@
-import { R as ReservaLibros, L as Libros } from "./claseLibros-075f01ea.js";
-import { R as ReservaSalas, S as Salas } from "./vistaSalas-d751a7a9.js";
-import "./main-ee19579a.js";
+import { R as ReservaLibros, L as Libros } from "./claseLibros-1dfbca85.js";
+import { R as ReservaSalas, S as Salas } from "./vistaSalas-79cacc2b.js";
+import "./main-f8b5675b.js";
 console.log("Conecciton done");
 const reservas = {
   template: `
