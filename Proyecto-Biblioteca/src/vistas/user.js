@@ -61,6 +61,20 @@ export class User {
       console.log(error)
     }
   }
-  
-  
+  static async recovery (email) {
+  let { data, error } = await supabase.auth.resetPasswordForEmail(email)
+  if(error){
+    swal({title:'Error al enviar mail',text:`${email}`, icon:'danger'})
+  }
+  }
+  static async updateRecovery (dataUser) {
+  const { data, error } = await supabase.auth.updateUser({  
+      email: `${dataUser.email}`,
+      password:  `${dataUser.password}`
+  })
+  if(error){
+    swal({title:'Error al recuperar la contraseña', icon:'danger'})
+  }
+}
+
 }

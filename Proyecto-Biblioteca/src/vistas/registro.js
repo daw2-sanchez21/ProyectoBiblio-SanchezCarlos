@@ -28,8 +28,8 @@ export default {
       <div class="invalid-feedback">El Email no es correcto</div>
     </div>
     <div class="m-3">
-      <label for="exampleInputPassword1" class="form-label">Password:</label></br>
-      <small class="form-text text-muted">La contraseña debe contener 8 caracteres y números.</small>
+      <label for="exampleInputPassword1" class="form-label">Contraseña:</label></br>
+      <small class="form-text text-muted">La contraseña debe contener 8 caracteres.</small>
       <input type="password" class="form-control" id="password-id" pattern="[A-Za-z0-9]+" required >
       <div class="invalid-feedback">
                 La contraseña debe contener 8 letras o números.

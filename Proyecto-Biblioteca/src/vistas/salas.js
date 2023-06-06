@@ -67,7 +67,7 @@ export default {
         })
         // Agregamos la lista de libros al elemento HTML con el ID "libros-list"
         const salaListContainer = document.getElementById('sala-list')
-        salaListContainer.appendChild(salaList);
+        salaListContainer.appendChild(salaList)
       //FILTRO SEARCH
        const formsearch = document.querySelector('#search-id-sala')
           formsearch.addEventListener('submit', async(e)=>{

@@ -14,8 +14,8 @@ export default {
                 <img src="https://cdn.pixabay.com/photo/2022/08/24/15/42/library-7408106_1280.jpg" width="90%" height="80%"  alt="" class=""">
             </div>
             <div class="col-6">
-                <h2>Qui som?</h2>
-                <p>LLSM, és un sistema de gestió de serveis que ofereix la biblioteca de llefià, a la nostra web podràs buscar el teu llibre favorit i reservar-lo des de casa i posteriorment acudir a la biblioteca a recollir-lo. A més, oferim les nostres sales perquè puguis acudir i gaudir de la lectura. Regsitra't per poder beneficiar-te de tots els serveis. </p>
+                <h2>Qué ofrecemos?</h2>
+                <p>LLSM, es un sistema de gestión de servicios que ofrece la biblioteca de llefià, en nuestra web podrás buscar tu libro favorito y reservarlo desde casa y posteriormente acudir a la biblioteca a recogerlo. Además ofrecemos nuestras salas para que puedas acudir y disfrutar de la lectura. Regístrate para poder beneficiarte de todos los servicios.</p>
             </div>
         </div>
     </div>
